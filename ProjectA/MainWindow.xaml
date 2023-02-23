@@ -5,10 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectA"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel Orientation="Horizontal">
-        <Label >fdfd</Label>
-        <Label >ghkh fghfgh gf hg</Label>
-        <Label> fjdksjf dksjl jkjkj kj jkj kljklj lkj</Label>
-    </StackPanel>
+        Title="ProjectA" Height="450" Width="800">
+    <Grid>
+        <Label>wow</Label>
+    </Grid>
 </Window>
