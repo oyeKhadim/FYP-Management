@@ -15,3 +15,5 @@ D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Fo
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.ManageGroups.resources
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.ManageProjects.resources
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.ManageStudents.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.AddStudent.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.AddAdvisor.resources

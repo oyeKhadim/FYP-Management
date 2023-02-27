@@ -38,7 +38,8 @@ namespace ProjectA.Forms
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            Form form = new Forms.AddStudent();
+            form.ShowDialog ();
         }
     }
 }

@@ -39,9 +39,11 @@
             this.buttonManageAdvisors = new System.Windows.Forms.Button();
             this.buttonManageStudents = new System.Windows.Forms.Button();
             this.panelChildForm = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panelTopBar.SuspendLayout();
             this.paneltopLeft.SuspendLayout();
             this.panelSideBar.SuspendLayout();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -49,11 +51,11 @@
             this.panelTopBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(160)))), ((int)(((byte)(160)))));
             this.panelTopBar.Controls.Add(this.btnCloseChildForm);
             this.panelTopBar.Controls.Add(this.lblTopBar);
-            this.panelTopBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTopBar.Location = new System.Drawing.Point(182, 0);
+            this.panelTopBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTopBar.Location = new System.Drawing.Point(186, 0);
             this.panelTopBar.Margin = new System.Windows.Forms.Padding(0);
             this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(802, 41);
+            this.panelTopBar.Size = new System.Drawing.Size(798, 40);
             this.panelTopBar.TabIndex = 1;
             this.panelTopBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTopBar_MouseDown);
             // 
@@ -75,7 +77,7 @@
             this.lblTopBar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTopBar.AutoSize = true;
             this.lblTopBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTopBar.Location = new System.Drawing.Point(338, 3);
+            this.lblTopBar.Location = new System.Drawing.Point(336, 3);
             this.lblTopBar.Name = "lblTopBar";
             this.lblTopBar.Size = new System.Drawing.Size(95, 31);
             this.lblTopBar.TabIndex = 0;
@@ -88,7 +90,7 @@
             this.paneltopLeft.Dock = System.Windows.Forms.DockStyle.Top;
             this.paneltopLeft.Location = new System.Drawing.Point(0, 0);
             this.paneltopLeft.Name = "paneltopLeft";
-            this.paneltopLeft.Size = new System.Drawing.Size(182, 41);
+            this.paneltopLeft.Size = new System.Drawing.Size(186, 41);
             this.paneltopLeft.TabIndex = 1;
             // 
             // lblProjectName
@@ -96,7 +98,7 @@
             this.lblProjectName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblProjectName.AutoSize = true;
             this.lblProjectName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProjectName.Location = new System.Drawing.Point(3, 9);
+            this.lblProjectName.Location = new System.Drawing.Point(5, 9);
             this.lblProjectName.Name = "lblProjectName";
             this.lblProjectName.Size = new System.Drawing.Size(170, 25);
             this.lblProjectName.TabIndex = 1;
@@ -111,13 +113,15 @@
             this.panelSideBar.Controls.Add(this.buttonManageAdvisors);
             this.panelSideBar.Controls.Add(this.buttonManageStudents);
             this.panelSideBar.Controls.Add(this.paneltopLeft);
-            this.panelSideBar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelSideBar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelSideBar.ForeColor = System.Drawing.Color.Black;
             this.panelSideBar.Location = new System.Drawing.Point(0, 0);
             this.panelSideBar.Margin = new System.Windows.Forms.Padding(0);
             this.panelSideBar.Name = "panelSideBar";
-            this.panelSideBar.Size = new System.Drawing.Size(182, 511);
+            this.tableLayoutPanel.SetRowSpan(this.panelSideBar, 2);
+            this.panelSideBar.Size = new System.Drawing.Size(186, 511);
             this.panelSideBar.TabIndex = 1;
+            this.panelSideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSideBar_Paint);
             // 
             // buttonManageGroups
             // 
@@ -130,7 +134,7 @@
             this.buttonManageGroups.ForeColor = System.Drawing.Color.White;
             this.buttonManageGroups.Location = new System.Drawing.Point(0, 158);
             this.buttonManageGroups.Name = "buttonManageGroups";
-            this.buttonManageGroups.Size = new System.Drawing.Size(182, 39);
+            this.buttonManageGroups.Size = new System.Drawing.Size(186, 39);
             this.buttonManageGroups.TabIndex = 5;
             this.buttonManageGroups.Text = "Manage Groups";
             this.buttonManageGroups.UseVisualStyleBackColor = false;
@@ -147,7 +151,7 @@
             this.buttonManageProjects.ForeColor = System.Drawing.Color.White;
             this.buttonManageProjects.Location = new System.Drawing.Point(0, 119);
             this.buttonManageProjects.Name = "buttonManageProjects";
-            this.buttonManageProjects.Size = new System.Drawing.Size(182, 39);
+            this.buttonManageProjects.Size = new System.Drawing.Size(186, 39);
             this.buttonManageProjects.TabIndex = 4;
             this.buttonManageProjects.Text = "Manage Projects";
             this.buttonManageProjects.UseVisualStyleBackColor = false;
@@ -164,7 +168,7 @@
             this.buttonManageAdvisors.ForeColor = System.Drawing.Color.White;
             this.buttonManageAdvisors.Location = new System.Drawing.Point(0, 80);
             this.buttonManageAdvisors.Name = "buttonManageAdvisors";
-            this.buttonManageAdvisors.Size = new System.Drawing.Size(182, 39);
+            this.buttonManageAdvisors.Size = new System.Drawing.Size(186, 39);
             this.buttonManageAdvisors.TabIndex = 3;
             this.buttonManageAdvisors.Text = "Manage Advisors";
             this.buttonManageAdvisors.UseVisualStyleBackColor = false;
@@ -181,7 +185,7 @@
             this.buttonManageStudents.ForeColor = System.Drawing.Color.White;
             this.buttonManageStudents.Location = new System.Drawing.Point(0, 41);
             this.buttonManageStudents.Name = "buttonManageStudents";
-            this.buttonManageStudents.Size = new System.Drawing.Size(182, 39);
+            this.buttonManageStudents.Size = new System.Drawing.Size(186, 39);
             this.buttonManageStudents.TabIndex = 2;
             this.buttonManageStudents.Text = "Manage Students";
             this.buttonManageStudents.UseVisualStyleBackColor = false;
@@ -191,10 +195,27 @@
             // 
             this.panelChildForm.BackColor = System.Drawing.SystemColors.Control;
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChildForm.Location = new System.Drawing.Point(182, 41);
+            this.panelChildForm.Location = new System.Drawing.Point(189, 43);
             this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(802, 470);
+            this.panelChildForm.Size = new System.Drawing.Size(792, 465);
             this.panelChildForm.TabIndex = 2;
+            // 
+            // tableLayoutPanel
+            // 
+            this.tableLayoutPanel.ColumnCount = 2;
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Controls.Add(this.panelSideBar, 0, 0);
+            this.tableLayoutPanel.Controls.Add(this.panelChildForm, 1, 1);
+            this.tableLayoutPanel.Controls.Add(this.panelTopBar, 1, 0);
+            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel.Name = "tableLayoutPanel";
+            this.tableLayoutPanel.RowCount = 2;
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(984, 511);
+            this.tableLayoutPanel.TabIndex = 3;
             // 
             // MainMenu
             // 
@@ -202,10 +223,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(984, 511);
-            this.Controls.Add(this.panelChildForm);
-            this.Controls.Add(this.panelTopBar);
-            this.Controls.Add(this.panelSideBar);
-            this.MinimumSize = new System.Drawing.Size(600, 300);
+            this.Controls.Add(this.tableLayoutPanel);
+            this.MinimumSize = new System.Drawing.Size(860, 460);
             this.Name = "MainMenu";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -215,6 +234,7 @@
             this.paneltopLeft.ResumeLayout(false);
             this.paneltopLeft.PerformLayout();
             this.panelSideBar.ResumeLayout(false);
+            this.tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -231,5 +251,6 @@
         private System.Windows.Forms.Label lblProjectName;
         private System.Windows.Forms.Button btnCloseChildForm;
         private System.Windows.Forms.Panel panelChildForm;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
     }
 }

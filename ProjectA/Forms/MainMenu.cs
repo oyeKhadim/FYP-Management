@@ -19,10 +19,6 @@ namespace ProjectA.Forms
         private int tempIndex;
         private Form activeForm;
 
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
 
         public MainMenu()
@@ -141,8 +137,12 @@ namespace ProjectA.Forms
 
         private void panelTopBar_MouseDown(object sender, MouseEventArgs e)
         {
-            ReleaseCapture();
-            SendMessage(this.Handle, 0x112, 0xf012, 0);
+            Extras.Drag.dragPage(this);
+        }
+
+        private void panelSideBar_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -10,17 +10,22 @@ using System.Windows.Forms;
 
 namespace ProjectA.Forms
 {
-    public partial class ManageAdvisors : Form
+    public partial class AddAdvisor : Form
     {
-        public ManageAdvisors()
+        public AddAdvisor()
         {
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void AddAdvisor_MouseDown(object sender, MouseEventArgs e)
         {
-            Form form = new Forms.AddAdvisor();
-            form.ShowDialog();
+            Extras.Drag.dragPage(this);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
         }
     }
 }

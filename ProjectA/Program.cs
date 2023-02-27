@@ -16,7 +16,7 @@ namespace ProjectA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.ManageStudents());
+            Application.Run(new Forms.MainMenu());
         }
     }
 }
