@@ -10,17 +10,21 @@ using System.Windows.Forms;
 
 namespace ProjectA.Forms
 {
-    public partial class ManageProjects : Form
+    public partial class AddEvaluation : Form
     {
-        public ManageProjects()
+        public AddEvaluation()
         {
             InitializeComponent();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            Form form = new Forms.AddProject();
-            form.ShowDialog();
+            this.Close();
+        }
+
+        private void AddEvaluation_MouseDown(object sender, MouseEventArgs e)
+        {
+            Extras.Drag.dragPage(this);
         }
     }
 }

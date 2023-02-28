@@ -59,6 +59,18 @@
     <Compile Include="Forms\AddAdvisor.Designer.cs">
       <DependentUpon>AddAdvisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddEvaluation.Designer.cs">
+      <DependentUpon>AddEvaluation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AddProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddProject.Designer.cs">
+      <DependentUpon>AddProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddStudent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +112,12 @@
     <Compile Include="Extras\ThemeColor.cs" />
     <EmbeddedResource Include="Forms\AddAdvisor.resx">
       <DependentUpon>AddAdvisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddEvaluation.resx">
+      <DependentUpon>AddEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddProject.resx">
+      <DependentUpon>AddProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>

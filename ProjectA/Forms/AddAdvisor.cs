@@ -27,5 +27,10 @@ namespace ProjectA.Forms
             this.Close();
 
         }
+
+        private void AddAdvisor_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

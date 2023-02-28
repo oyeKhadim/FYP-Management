@@ -280,6 +280,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddAdvisor";
+            this.Load += new System.EventHandler(this.AddAdvisor_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddAdvisor_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();

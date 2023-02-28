@@ -57,7 +57,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.70351F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.90117F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.96359F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.tableLayoutPanel.Controls.Add(this.dgv, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.lblHeading, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.btnAdd, 12, 4);
@@ -92,7 +92,7 @@
             this.dgv.Location = new System.Drawing.Point(28, 108);
             this.dgv.Name = "dgv";
             this.tableLayoutPanel.SetRowSpan(this.dgv, 8);
-            this.dgv.Size = new System.Drawing.Size(616, 301);
+            this.dgv.Size = new System.Drawing.Size(611, 301);
             this.dgv.TabIndex = 5;
             // 
             // lblHeading
@@ -102,7 +102,7 @@
             this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeading.Location = new System.Drawing.Point(28, 70);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(86, 35);
+            this.lblHeading.Size = new System.Drawing.Size(85, 35);
             this.lblHeading.TabIndex = 4;
             this.lblHeading.Text = "Projects :";
             this.lblHeading.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -111,20 +111,21 @@
             // 
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(680, 143);
+            this.btnAdd.Location = new System.Drawing.Point(674, 143);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(86, 29);
+            this.btnAdd.Size = new System.Drawing.Size(85, 29);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
             this.btnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(680, 178);
+            this.btnEdit.Location = new System.Drawing.Point(674, 178);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(86, 29);
+            this.btnEdit.Size = new System.Drawing.Size(85, 29);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -133,9 +134,9 @@
             // 
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(680, 213);
+            this.btnDelete.Location = new System.Drawing.Point(674, 213);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(86, 29);
+            this.btnDelete.Size = new System.Drawing.Size(85, 29);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -146,16 +147,16 @@
             this.txtBoxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxSearch.Location = new System.Drawing.Point(297, 38);
+            this.txtBoxSearch.Location = new System.Drawing.Point(296, 38);
             this.txtBoxSearch.Name = "txtBoxSearch";
-            this.txtBoxSearch.Size = new System.Drawing.Size(244, 29);
+            this.txtBoxSearch.Size = new System.Drawing.Size(242, 29);
             this.txtBoxSearch.TabIndex = 0;
             // 
             // btnSearch
             // 
             this.btnSearch.AutoSize = true;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(560, 38);
+            this.btnSearch.Location = new System.Drawing.Point(556, 38);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 29);
             this.btnSearch.TabIndex = 1;
