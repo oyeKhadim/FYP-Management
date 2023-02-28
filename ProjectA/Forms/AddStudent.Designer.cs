@@ -33,7 +33,7 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblDoB = new System.Windows.Forms.Label();
             this.dateTimePickerDoB = new System.Windows.Forms.DateTimePicker();
-            this.txtBoxContact = new System.Windows.Forms.TextBox();
+            this.textBoxContact = new System.Windows.Forms.TextBox();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblContct = new System.Windows.Forms.Label();
@@ -95,14 +95,15 @@
             this.dateTimePickerDoB.Name = "dateTimePickerDoB";
             this.dateTimePickerDoB.Size = new System.Drawing.Size(249, 23);
             this.dateTimePickerDoB.TabIndex = 6;
+            this.dateTimePickerDoB.ValueChanged += new System.EventHandler(this.dateTimePickerDoB_ValueChanged);
             // 
-            // txtBoxContact
+            // textBoxContact
             // 
-            this.txtBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxContact.Location = new System.Drawing.Point(437, 111);
-            this.txtBoxContact.Name = "txtBoxContact";
-            this.txtBoxContact.Size = new System.Drawing.Size(191, 26);
-            this.txtBoxContact.TabIndex = 3;
+            this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxContact.Location = new System.Drawing.Point(437, 111);
+            this.textBoxContact.Name = "textBoxContact";
+            this.textBoxContact.Size = new System.Drawing.Size(191, 26);
+            this.textBoxContact.TabIndex = 3;
             // 
             // textBoxLastName
             // 
@@ -160,11 +161,14 @@
             // 
             // comboBoxGender
             // 
+            this.comboBoxGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBoxGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxGender.FormattingEnabled = true;
             this.comboBoxGender.Items.AddRange(new object[] {
             "Male",
-            "Female"});
+            "Female",
+            "NULL"});
             this.comboBoxGender.Location = new System.Drawing.Point(437, 76);
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(191, 28);
@@ -180,6 +184,7 @@
             this.checkBoxisDoBApplicable.TabIndex = 7;
             this.checkBoxisDoBApplicable.Text = "Not Applicable";
             this.checkBoxisDoBApplicable.UseVisualStyleBackColor = true;
+            this.checkBoxisDoBApplicable.CheckStateChanged += new System.EventHandler(this.checkBoxisDoBApplicable_CheckStateChanged);
             // 
             // btnCancel
             // 
@@ -201,6 +206,7 @@
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // lblHeading
             // 
@@ -235,7 +241,7 @@
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblDoB);
             this.Controls.Add(this.dateTimePickerDoB);
-            this.Controls.Add(this.txtBoxContact);
+            this.Controls.Add(this.textBoxContact);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblContct);
@@ -251,8 +257,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddStudent";
-            this.Load += new System.EventHandler(this.AddStudent_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddStudent_MouseDown);
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,7 +270,7 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblDoB;
         private System.Windows.Forms.DateTimePicker dateTimePickerDoB;
-        private System.Windows.Forms.TextBox txtBoxContact;
+        private System.Windows.Forms.TextBox textBoxContact;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Label lblContct;

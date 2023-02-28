@@ -16,5 +16,15 @@ namespace ProjectA.Forms
         {
             InitializeComponent();
         }
+
+        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ManageGroups_Load(object sender, EventArgs e)
+        {
+            ThemeColor.loadTheme(this.tableLayoutPanel);
+        }
     }
 }

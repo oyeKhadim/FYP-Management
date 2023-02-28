@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjectA
 {
@@ -63,6 +64,20 @@ namespace ProjectA
 
             return Color.FromArgb(color.A, (byte)red, (byte)green, (byte)blue);
         }
+        public static void loadTheme(TableLayoutPanel tableLayoutPanel)
+        {
+            foreach (Control control in tableLayoutPanel.Controls)
+            {
+                if (control.GetType() == typeof(Button))
+                {
+                    Button button = (Button)control;
+                    button.BackColor = ThemeColor.PrimaryColor;
+                    button.ForeColor = Color.White;
+                    button.FlatAppearance.BorderColor = ThemeColor.SecondaryColor;
+                  
+                }
+            }
 
+        }
     }
 }

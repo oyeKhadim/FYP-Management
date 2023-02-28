@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Person.cs" />
+    <Compile Include="BL\Student.cs" />
+    <Compile Include="Extras\Configuration.cs" />
     <Compile Include="Extras\Drag.cs" />
+    <Compile Include="Extras\Validations.cs" />
     <Compile Include="Forms\AddAdvisor.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -22,5 +22,10 @@ namespace ProjectA.Forms
             Form form = new Forms.AddProject();
             form.ShowDialog();
         }
+
+        private void ManageProjects_Load(object sender, EventArgs e)
+        {
+            ThemeColor.loadTheme(this.tableLayoutPanel);
+        }
     }
 }

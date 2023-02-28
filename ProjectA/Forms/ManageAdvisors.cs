@@ -22,5 +22,15 @@ namespace ProjectA.Forms
             Form form = new Forms.AddAdvisor();
             form.ShowDialog();
         }
+
+        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+     
+        }
+
+        private void ManageAdvisors_Load(object sender, EventArgs e)
+        {
+            ThemeColor.loadTheme(this.tableLayoutPanel);
+        }
     }
 }
