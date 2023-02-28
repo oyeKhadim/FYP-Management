@@ -5,45 +5,83 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjectA.Forms
 {
-    public partial class AddStudent : Form
+    public partial class EditStudent : Form
     {
-
         Student s;
         SqlConnection con;
-
-        public AddStudent()
+        public EditStudent(Student student)
         {
             InitializeComponent();
-            start();
-        }
-
-
-
-        private void start()
-        {
-            s = new Student();
+            this.s = student;
             con = Configuration.getInstance().getConnection();
-            s.DateOfBirth = dateTimePickerDoB.Value.ToString();
-            comboBoxGender.SelectedIndex = 0;
+        
         }
 
+        private void loadPreviousData()
+        {
+            textBoxFirstName.Text = s.FirstName;
+            textBoxLastName.Text = s.LastName;
+            textBoxRegNo.Text = s.RegistrationNo;
+            textBoxEmail.Text = s.Email;
+            textBoxContact.Text = s.Contact;
+            if (s.Gender == 0)
+            {
+                comboBoxGender.SelectedIndex = 2;
+            }
+            else
+            {
+                comboBoxGender.SelectedIndex = s.Gender - 1;
+            }
+            if (s.DateOfBirth == "")
+            {
+                checkBoxisDoBApplicable.Checked = true;
+                dateTimePickerDoB.Enabled = false;
+            }
+            else
+            {
+                dateTimePickerDoB.Value = Convert.ToDateTime(s.DateOfBirth);
+            }
+          
+        }
+        private void EditStudent_MouseDown(object sender, MouseEventArgs e)
+        {
+            Extras.Drag.dragPage(this);
+        }
 
-        private void btnCancel_Click_1(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void EditStudent_Load(object sender, EventArgs e)
+        {
+            loadPreviousData();
+        }
+     
+
+        private void checkBoxisDoBApplicable_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxisDoBApplicable.Checked)
+            {
+                dateTimePickerDoB.Enabled = false;
+                s.DateOfBirth = null;
+            }
+            else
+            {
+                dateTimePickerDoB.Enabled = true;
+                s.DateOfBirth = dateTimePickerDoB.Value.ToString();
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -94,8 +132,9 @@ namespace ProjectA.Forms
                 }
 
                 //Adding data in person table
-                cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
+                cmd = new SqlCommand("Update Person SET firstName=@firstName, lastName=@lastName, contact=@contact,email=@email,dateofbirth=@dob,gender=@gender where id=@id", con);
                 cmd.Parameters.AddWithValue("@firstName", s.FirstName);
+                cmd.Parameters.AddWithValue("@id", s.Id);
                 //inserting null values in database if user has not provided full informations
                 if (s.LastName == "")
                 {
@@ -132,50 +171,19 @@ namespace ProjectA.Forms
                     cmd.Parameters.AddWithValue("@gender", s.Gender);
                 }
                 cmd.ExecuteNonQuery();
-                //getting id of person which is auto genrated on above entry 
-                s.Id = retrieveId();
+       
                 //Inserting data in student table
-                cmd = new SqlCommand("Insert into Student values (@id, @registrationNo)", con);
+                cmd = new SqlCommand("Update  Student SET  registrationNo=@registrationNo where id=@id", con);
                 cmd.Parameters.AddWithValue("@id", s.Id);
                 cmd.Parameters.AddWithValue("@registrationNo", s.RegistrationNo);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Added");
+                MessageBox.Show("Updated");
                 this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-        private int retrieveId()
-        {
-            //Getting latest autoincremented id
-            SqlCommand cmd = new SqlCommand("Select MAX(id) from Person", con);
-            return (Int32)cmd.ExecuteScalar();
-        }
-
-        private void dateTimePickerDoB_ValueChanged(object sender, EventArgs e)
-        {
-            s.DateOfBirth = dateTimePickerDoB.Value.ToString();
-        }
-
-        private void checkBoxisDoBApplicable_CheckStateChanged(object sender, EventArgs e)
-        {
-            if (checkBoxisDoBApplicable.Checked)
-            {
-                dateTimePickerDoB.Enabled = false;
-                s.DateOfBirth = null;
-            }
-            else
-            {
-                dateTimePickerDoB.Enabled = true;
-                s.DateOfBirth = dateTimePickerDoB.Value.ToString();
-            }
-        }
-
-        private void AddStudent_MouseDown(object sender, MouseEventArgs e)
-        {
-            Extras.Drag.dragPage(this);
         }
     }
 }

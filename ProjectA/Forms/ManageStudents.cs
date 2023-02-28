@@ -58,8 +58,21 @@ namespace ProjectA.Forms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-          string s=  dgv.SelectedRows[0].Cells[1].Value.ToString();
-            Form form = new AddStudent();
+            Student student = new Student();
+            student.Id = int.Parse(dgv.SelectedRows[0].Cells[0].Value.ToString());
+            student.FirstName = dgv.SelectedRows[0].Cells[1].Value.ToString();
+            student.LastName = dgv.SelectedRows[0].Cells[2].Value.ToString();
+            student.RegistrationNo = dgv.SelectedRows[0].Cells[3].Value.ToString();
+            student.Contact = dgv.SelectedRows[0].Cells[4].Value.ToString();
+            student.Email = dgv.SelectedRows[0].Cells[5].Value.ToString();
+            student.DateOfBirth = dgv.SelectedRows[0].Cells[6].Value.ToString();
+            string gender = dgv.SelectedRows[0].Cells[7].Value.ToString();
+            if (gender == "")
+            {
+                gender = "0";
+            }
+            student.Gender =int.Parse( gender);
+            Form form = new EditStudent(student);
             form.ShowDialog();
             loadData();
         }

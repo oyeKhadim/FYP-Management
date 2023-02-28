@@ -1,6 +1,6 @@
 ﻿namespace ProjectA.Forms
 {
-    partial class AddStudent
+    partial class EditStudent
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.textBoxRegNo = new System.Windows.Forms.TextBox();
+            this.lblHeading = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblRegNo = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -43,121 +45,138 @@
             this.comboBoxGender = new System.Windows.Forms.ComboBox();
             this.checkBoxisDoBApplicable = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.lblHeading = new System.Windows.Forms.Label();
-            this.textBoxRegNo = new System.Windows.Forms.TextBox();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // textBoxRegNo
+            // 
+            this.textBoxRegNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRegNo.Location = new System.Drawing.Point(166, 83);
+            this.textBoxRegNo.Name = "textBoxRegNo";
+            this.textBoxRegNo.Size = new System.Drawing.Size(184, 26);
+            this.textBoxRegNo.TabIndex = 56;
+            // 
+            // lblHeading
+            // 
+            this.lblHeading.AutoSize = true;
+            this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeading.ForeColor = System.Drawing.Color.Black;
+            this.lblHeading.Location = new System.Drawing.Point(240, 9);
+            this.lblHeading.Name = "lblHeading";
+            this.lblHeading.Size = new System.Drawing.Size(219, 24);
+            this.lblHeading.TabIndex = 55;
+            this.lblHeading.Text = "Update Details of Student";
+            this.lblHeading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblFirstName
             // 
             this.lblFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFirstName.Location = new System.Drawing.Point(40, 44);
+            this.lblFirstName.Location = new System.Drawing.Point(47, 51);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(118, 23);
-            this.lblFirstName.TabIndex = 19;
+            this.lblFirstName.TabIndex = 49;
             this.lblFirstName.Text = "First Name :";
             this.lblFirstName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblRegNo
             // 
             this.lblRegNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegNo.Location = new System.Drawing.Point(40, 79);
+            this.lblRegNo.Location = new System.Drawing.Point(47, 86);
             this.lblRegNo.Name = "lblRegNo";
             this.lblRegNo.Size = new System.Drawing.Size(118, 27);
-            this.lblRegNo.TabIndex = 18;
+            this.lblRegNo.TabIndex = 48;
             this.lblRegNo.Text = "Registration No :";
             this.lblRegNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblEmail
             // 
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(40, 107);
+            this.lblEmail.Location = new System.Drawing.Point(47, 114);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(118, 34);
-            this.lblEmail.TabIndex = 23;
+            this.lblEmail.TabIndex = 53;
             this.lblEmail.Text = "Email :";
             this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblDoB
             // 
             this.lblDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDoB.Location = new System.Drawing.Point(40, 142);
+            this.lblDoB.Location = new System.Drawing.Point(47, 149);
             this.lblDoB.Name = "lblDoB";
             this.lblDoB.Size = new System.Drawing.Size(98, 30);
-            this.lblDoB.TabIndex = 20;
+            this.lblDoB.TabIndex = 50;
             this.lblDoB.Text = "Date of Birth :";
             this.lblDoB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dateTimePickerDoB
             // 
             this.dateTimePickerDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerDoB.Location = new System.Drawing.Point(159, 148);
+            this.dateTimePickerDoB.Location = new System.Drawing.Point(166, 155);
             this.dateTimePickerDoB.Name = "dateTimePickerDoB";
             this.dateTimePickerDoB.Size = new System.Drawing.Size(249, 23);
-            this.dateTimePickerDoB.TabIndex = 6;
-            this.dateTimePickerDoB.ValueChanged += new System.EventHandler(this.dateTimePickerDoB_ValueChanged);
+            this.dateTimePickerDoB.TabIndex = 44;
             // 
             // textBoxContact
             // 
             this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxContact.Location = new System.Drawing.Point(437, 111);
+            this.textBoxContact.Location = new System.Drawing.Point(444, 118);
             this.textBoxContact.Name = "textBoxContact";
             this.textBoxContact.Size = new System.Drawing.Size(191, 26);
-            this.textBoxContact.TabIndex = 3;
+            this.textBoxContact.TabIndex = 41;
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLastName.Location = new System.Drawing.Point(437, 44);
+            this.textBoxLastName.Location = new System.Drawing.Point(444, 51);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(191, 26);
-            this.textBoxLastName.TabIndex = 1;
+            this.textBoxLastName.TabIndex = 40;
             // 
             // lblLastName
             // 
             this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastName.Location = new System.Drawing.Point(345, 44);
+            this.lblLastName.Location = new System.Drawing.Point(352, 51);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(107, 23);
-            this.lblLastName.TabIndex = 21;
+            this.lblLastName.TabIndex = 51;
             this.lblLastName.Text = "Last Name :";
             this.lblLastName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblContct
             // 
             this.lblContct.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContct.Location = new System.Drawing.Point(345, 111);
+            this.lblContct.Location = new System.Drawing.Point(352, 118);
             this.lblContct.Name = "lblContct";
             this.lblContct.Size = new System.Drawing.Size(107, 27);
-            this.lblContct.TabIndex = 22;
+            this.lblContct.TabIndex = 52;
             this.lblContct.Text = "Contact  :";
             this.lblContct.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblGender
             // 
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(349, 68);
+            this.lblGender.Location = new System.Drawing.Point(356, 75);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(86, 34);
-            this.lblGender.TabIndex = 24;
+            this.lblGender.TabIndex = 54;
             this.lblGender.Text = "Gender :";
             this.lblGender.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxEmail
             // 
             this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmail.Location = new System.Drawing.Point(159, 110);
+            this.textBoxEmail.Location = new System.Drawing.Point(166, 117);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(184, 26);
-            this.textBoxEmail.TabIndex = 4;
+            this.textBoxEmail.TabIndex = 42;
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFirstName.Location = new System.Drawing.Point(159, 44);
+            this.textBoxFirstName.Location = new System.Drawing.Point(166, 51);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(184, 26);
-            this.textBoxFirstName.TabIndex = 0;
+            this.textBoxFirstName.TabIndex = 39;
             // 
             // comboBoxGender
             // 
@@ -169,66 +188,46 @@
             "Male",
             "Female",
             "NULL"});
-            this.comboBoxGender.Location = new System.Drawing.Point(437, 76);
+            this.comboBoxGender.Location = new System.Drawing.Point(444, 83);
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(191, 28);
-            this.comboBoxGender.TabIndex = 5;
+            this.comboBoxGender.TabIndex = 43;
             // 
             // checkBoxisDoBApplicable
             // 
             this.checkBoxisDoBApplicable.AutoSize = true;
             this.checkBoxisDoBApplicable.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxisDoBApplicable.Location = new System.Drawing.Point(437, 150);
+            this.checkBoxisDoBApplicable.Location = new System.Drawing.Point(444, 157);
             this.checkBoxisDoBApplicable.Name = "checkBoxisDoBApplicable";
             this.checkBoxisDoBApplicable.Size = new System.Drawing.Size(121, 22);
-            this.checkBoxisDoBApplicable.TabIndex = 7;
+            this.checkBoxisDoBApplicable.TabIndex = 45;
             this.checkBoxisDoBApplicable.Text = "Not Applicable";
             this.checkBoxisDoBApplicable.UseVisualStyleBackColor = true;
-            this.checkBoxisDoBApplicable.CheckStateChanged += new System.EventHandler(this.checkBoxisDoBApplicable_CheckStateChanged);
+            this.checkBoxisDoBApplicable.CheckedChanged += new System.EventHandler(this.checkBoxisDoBApplicable_CheckedChanged);
             // 
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(504, 182);
+            this.btnCancel.Location = new System.Drawing.Point(511, 189);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 28);
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 46;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnAdd
+            // btnEdit
             // 
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(579, 182);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(49, 28);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit.Location = new System.Drawing.Point(586, 189);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(49, 28);
+            this.btnEdit.TabIndex = 47;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // lblHeading
-            // 
-            this.lblHeading.AutoSize = true;
-            this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading.ForeColor = System.Drawing.Color.Black;
-            this.lblHeading.Location = new System.Drawing.Point(258, 4);
-            this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(194, 24);
-            this.lblHeading.TabIndex = 35;
-            this.lblHeading.Text = "Add Details of Student";
-            this.lblHeading.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxRegNo
-            // 
-            this.textBoxRegNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRegNo.Location = new System.Drawing.Point(159, 76);
-            this.textBoxRegNo.Name = "textBoxRegNo";
-            this.textBoxRegNo.Size = new System.Drawing.Size(184, 26);
-            this.textBoxRegNo.TabIndex = 38;
-            // 
-            // AddStudent
+            // EditStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -251,13 +250,13 @@
             this.Controls.Add(this.comboBoxGender);
             this.Controls.Add(this.checkBoxisDoBApplicable);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.btnEdit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AddStudent";
-            this.ShowInTaskbar = false;
+            this.Name = "EditStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AddStudent";
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddStudent_MouseDown);
+            this.Text = "EditStudent";
+            this.Load += new System.EventHandler(this.EditStudent_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EditStudent_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,6 +264,8 @@
 
         #endregion
 
+        private System.Windows.Forms.TextBox textBoxRegNo;
+        private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Label lblRegNo;
         private System.Windows.Forms.Label lblEmail;
@@ -280,8 +281,6 @@
         private System.Windows.Forms.ComboBox comboBoxGender;
         private System.Windows.Forms.CheckBox checkBoxisDoBApplicable;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Label lblHeading;
-        private System.Windows.Forms.TextBox textBoxRegNo;
+        private System.Windows.Forms.Button btnEdit;
     }
 }

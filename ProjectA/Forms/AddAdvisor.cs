@@ -32,5 +32,10 @@ namespace ProjectA.Forms
         {
 
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
