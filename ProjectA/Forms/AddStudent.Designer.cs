@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblRegNo = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.lblHeading = new System.Windows.Forms.Label();
             this.textBoxRegNo = new System.Windows.Forms.TextBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFirstName
@@ -100,23 +103,25 @@
             // textBoxContact
             // 
             this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxContact.Location = new System.Drawing.Point(437, 111);
+            this.textBoxContact.Location = new System.Drawing.Point(459, 111);
             this.textBoxContact.Name = "textBoxContact";
             this.textBoxContact.Size = new System.Drawing.Size(191, 26);
-            this.textBoxContact.TabIndex = 3;
+            this.textBoxContact.TabIndex = 5;
+            this.textBoxContact.Leave += new System.EventHandler(this.textBoxContact_Leave);
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLastName.Location = new System.Drawing.Point(437, 44);
+            this.textBoxLastName.Location = new System.Drawing.Point(459, 44);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(191, 26);
             this.textBoxLastName.TabIndex = 1;
+     
             // 
             // lblLastName
             // 
             this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastName.Location = new System.Drawing.Point(345, 44);
+            this.lblLastName.Location = new System.Drawing.Point(367, 44);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(107, 23);
             this.lblLastName.TabIndex = 21;
@@ -126,7 +131,7 @@
             // lblContct
             // 
             this.lblContct.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContct.Location = new System.Drawing.Point(345, 111);
+            this.lblContct.Location = new System.Drawing.Point(367, 111);
             this.lblContct.Name = "lblContct";
             this.lblContct.Size = new System.Drawing.Size(107, 27);
             this.lblContct.TabIndex = 22;
@@ -136,7 +141,7 @@
             // lblGender
             // 
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(349, 68);
+            this.lblGender.Location = new System.Drawing.Point(371, 68);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(86, 34);
             this.lblGender.TabIndex = 24;
@@ -150,6 +155,7 @@
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(184, 26);
             this.textBoxEmail.TabIndex = 4;
+            this.textBoxEmail.Leave += new System.EventHandler(this.textBoxEmail_Leave);
             // 
             // textBoxFirstName
             // 
@@ -158,6 +164,7 @@
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(184, 26);
             this.textBoxFirstName.TabIndex = 0;
+            this.textBoxFirstName.Leave += new System.EventHandler(this.textBoxFirstName_Leave);
             // 
             // comboBoxGender
             // 
@@ -169,10 +176,11 @@
             "Male",
             "Female",
             "NULL"});
-            this.comboBoxGender.Location = new System.Drawing.Point(437, 76);
+            this.comboBoxGender.Location = new System.Drawing.Point(459, 76);
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(191, 28);
-            this.comboBoxGender.TabIndex = 5;
+            this.comboBoxGender.TabIndex = 3;
+       
             // 
             // checkBoxisDoBApplicable
             // 
@@ -226,7 +234,13 @@
             this.textBoxRegNo.Location = new System.Drawing.Point(159, 76);
             this.textBoxRegNo.Name = "textBoxRegNo";
             this.textBoxRegNo.Size = new System.Drawing.Size(184, 26);
-            this.textBoxRegNo.TabIndex = 38;
+            this.textBoxRegNo.TabIndex = 2;
+            this.textBoxRegNo.Leave += new System.EventHandler(this.textBoxRegNo_Leave);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // AddStudent
             // 
@@ -258,6 +272,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddStudent";
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddStudent_MouseDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,5 +298,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.TextBox textBoxRegNo;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

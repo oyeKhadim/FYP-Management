@@ -11,6 +11,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI;
+using System.Web.WebSockets;
 using System.Windows.Forms;
 
 namespace ProjectA.Forms
@@ -47,100 +49,100 @@ namespace ProjectA.Forms
         {
             try
             {
+                //validating all fields
+                bool isAllInfoValid = true;
+                isAllInfoValid = Validations.validateTextBox(textBoxFirstName, errorProvider) &&
+                Validations.validateTextBox(textBoxEmail, errorProvider) &&
+                Validations.validateTextBox(textBoxRegNo, errorProvider) &&
+                Validations.validateIntTextBox(textBoxContact, errorProvider) &&
+                Validations.validateEmailTextBox(textBoxEmail, errorProvider);
+                Validations.validateTextBox(textBoxFirstName, errorProvider);
+                Validations.validateTextBox(textBoxEmail, errorProvider);
+                Validations.validateTextBox(textBoxRegNo, errorProvider);
+                Validations.validateIntTextBox(textBoxContact, errorProvider);
+                Validations.validateEmailTextBox(textBoxEmail, errorProvider);
                 s.FirstName = textBoxFirstName.Text;
                 s.LastName = textBoxLastName.Text;
                 s.Contact = textBoxContact.Text;
                 s.Email = textBoxEmail.Text;
                 s.RegistrationNo = textBoxRegNo.Text;
-                //Handling Exceptions as Fields should be filled properly to store Data
-                if (s.FirstName == "")
+                //if all fields all fill correctly store in database
+                if (isAllInfoValid)
                 {
-                    throw new Exception("First Name cannot be Empty");
-                }
-                if (s.RegistrationNo == "")
-                {
-                    throw new Exception("Registration No cannot be Empty");
-                }
-                if (s.Email == "")
-                {
-                    throw new Exception("Email cannot be Empty");
-                }
-                if (!Validations.isNumber(s.Contact))
-                {
-                    throw new Exception("Contact No only consists of digits cannot be Empty");
-                }
-                if (!Validations.IsValidEmail(s.Email))
-                {
-                    throw new Exception("Enter Valid Email");
-                }
-                SqlCommand cmd;
-                string gender = "";
-                //Checking whether gender is valid or not
-                try
-                {
-                    gender = comboBoxGender.SelectedItem.ToString();
-                    if (gender != "NULL")
+                    SqlCommand cmd;
+                    string gender = "";
+                    //Checking whether gender is valid or not
+                    try
                     {
-                        //Getting Gender in int from lookup table
-                        cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                        cmd.Parameters.AddWithValue("@value", gender);
-                        cmd.Parameters.AddWithValue("@category", "Gender");
-                        s.Gender = (Int32)cmd.ExecuteScalar();
+                        gender = comboBoxGender.SelectedItem.ToString();
+                        if (gender != "NULL")
+                        {
+                            //Getting Gender in int from lookup table
+                            cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
+                            cmd.Parameters.AddWithValue("@value", gender);
+                            cmd.Parameters.AddWithValue("@category", "Gender");
+                            s.Gender = (Int32)cmd.ExecuteScalar();
+                        }
                     }
-                }
-                catch
-                {
-                    throw new Exception("Provide Correct Gender");
-                }
+                    catch
+                    {
+                        throw new Exception("Provide Correct Gender");
 
-                //Adding data in person table
-                cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
-                cmd.Parameters.AddWithValue("@firstName", s.FirstName);
-                //inserting null values in database if user has not provided full informations
-                if (s.LastName == "")
-                {
-                    cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@lastName", s.LastName);
-                }
-                if (s.Contact == "")
-                {
-                    cmd.Parameters.AddWithValue("@contact", DBNull.Value);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@contact", s.Contact);
-                }
-                cmd.Parameters.AddWithValue("@email", s.Email);
-                if (s.DateOfBirth != null)
-                {
-                    cmd.Parameters.AddWithValue("@dob", s.DateOfBirth);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("@dob", DBNull.Value);
+                    }
 
-                }
-                if (s.Gender == 0)
-                {
-                    cmd.Parameters.AddWithValue("@gender", DBNull.Value);
+                    //Adding data in person table
+                    cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
+                    cmd.Parameters.AddWithValue("@firstName", s.FirstName);
+                    //inserting null values in database if user has not provided full informations
+                    if (s.LastName == "")
+                    {
+                        cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@lastName", s.LastName);
+                    }
+                    if (s.Contact == "")
+                    {
+                        cmd.Parameters.AddWithValue("@contact", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@contact", s.Contact);
+                    }
+                    cmd.Parameters.AddWithValue("@email", s.Email);
+                    if (s.DateOfBirth != null)
+                    {
+                        cmd.Parameters.AddWithValue("@dob", s.DateOfBirth);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@dob", DBNull.Value);
+
+                    }
+                    if (s.Gender == 0)
+                    {
+                        cmd.Parameters.AddWithValue("@gender", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@gender", s.Gender);
+                    }
+                    cmd.ExecuteNonQuery();
+                    //getting id of person which is auto genrated on above entry 
+                    s.Id = retrieveId();
+                    //Inserting data in student table
+                    cmd = new SqlCommand("Insert into Student values (@id, @registrationNo)", con);
+                    cmd.Parameters.AddWithValue("@id", s.Id);
+                    cmd.Parameters.AddWithValue("@registrationNo", s.RegistrationNo);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Added");
+                    this.Close();
                 }
                 else
                 {
-                    cmd.Parameters.AddWithValue("@gender", s.Gender);
+                    throw new Exception("Fill All Fields Correctly");
                 }
-                cmd.ExecuteNonQuery();
-                //getting id of person which is auto genrated on above entry 
-                s.Id = retrieveId();
-                //Inserting data in student table
-                cmd = new SqlCommand("Insert into Student values (@id, @registrationNo)", con);
-                cmd.Parameters.AddWithValue("@id", s.Id);
-                cmd.Parameters.AddWithValue("@registrationNo", s.RegistrationNo);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Added");
-                this.Close();
             }
             catch (Exception ex)
             {
@@ -176,6 +178,33 @@ namespace ProjectA.Forms
         private void AddStudent_MouseDown(object sender, MouseEventArgs e)
         {
             Extras.Drag.dragPage(this);
+        }
+
+        private void textBoxFirstName_Leave(object sender, EventArgs e)
+        {
+            Validations.validateTextBox(textBoxFirstName, errorProvider);
+        }
+
+
+
+        private void textBoxRegNo_Leave(object sender, EventArgs e)
+        {
+            Validations.validateTextBox(textBoxRegNo, errorProvider);
+
+        }
+
+
+        private void textBoxEmail_Leave(object sender, EventArgs e)
+        {
+            Validations.validateTextBox(textBoxEmail, errorProvider);
+
+
+        }
+
+        private void textBoxContact_Leave(object sender, EventArgs e)
+        {
+            Validations.validateIntTextBox(textBoxContact, errorProvider);
+
         }
     }
 }

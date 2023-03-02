@@ -18,11 +18,7 @@ namespace ProjectA.Forms
         public ManageStudents()
         {
             InitializeComponent();
-
-
         }
-
-
         private void ManageStudents_Load(object sender, EventArgs e)
         {
             ThemeColor.loadTheme(this.tableLayoutPanel);
@@ -33,7 +29,7 @@ namespace ProjectA.Forms
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,Gender from Student S Join Person P on S.id=P.id", con);
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Join Lookup L on L.Id=Gender", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -50,31 +46,56 @@ namespace ProjectA.Forms
             form.ShowDialog();
             loadData();
         }
-
-        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnEdit_Click(object sender, EventArgs e)
         {
             Student student = new Student();
-            student.Id = int.Parse(dgv.SelectedRows[0].Cells[0].Value.ToString());
-            student.FirstName = dgv.SelectedRows[0].Cells[1].Value.ToString();
-            student.LastName = dgv.SelectedRows[0].Cells[2].Value.ToString();
-            student.RegistrationNo = dgv.SelectedRows[0].Cells[3].Value.ToString();
-            student.Contact = dgv.SelectedRows[0].Cells[4].Value.ToString();
-            student.Email = dgv.SelectedRows[0].Cells[5].Value.ToString();
-            student.DateOfBirth = dgv.SelectedRows[0].Cells[6].Value.ToString();
-            string gender = dgv.SelectedRows[0].Cells[7].Value.ToString();
-            if (gender == "")
+            try
             {
-                gender = "0";
+                //getting data from grid view
+                student.Id = int.Parse(dgv.SelectedRows[0].Cells[0].Value.ToString());
+                student.FirstName = dgv.SelectedRows[0].Cells[1].Value.ToString();
+                student.LastName = dgv.SelectedRows[0].Cells[2].Value.ToString();
+                student.RegistrationNo = dgv.SelectedRows[0].Cells[3].Value.ToString();
+                student.Contact = dgv.SelectedRows[0].Cells[4].Value.ToString();
+                student.Email = dgv.SelectedRows[0].Cells[5].Value.ToString();
+                student.DateOfBirth = dgv.SelectedRows[0].Cells[6].Value.ToString();
+                string gender = dgv.SelectedRows[0].Cells[7].Value.ToString();
+                if (gender != "")
+                {
+                    //Getting Gender in int from lookup table
+                    SqlConnection con = Configuration.getInstance().getConnection();
+                    SqlCommand cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
+                    cmd.Parameters.AddWithValue("@value", gender);
+                    cmd.Parameters.AddWithValue("@category", "Gender");
+                    student.Gender = (Int32)cmd.ExecuteScalar();
+                }
             }
-            student.Gender =int.Parse( gender);
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             Form form = new EditStudent(student);
             form.ShowDialog();
             loadData();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                var con = Configuration.getInstance().getConnection();
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Join Lookup L on L.Id=Gender where RegistrationNo=@RegistrationNo", con);
+                cmd.Parameters.AddWithValue("@RegistrationNo", txtBoxSearch.Text);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgv.DataSource = dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message);
+            }
         }
     }
 }

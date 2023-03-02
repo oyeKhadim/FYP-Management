@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxRegNo = new System.Windows.Forms.TextBox();
             this.lblHeading = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
@@ -46,6 +47,8 @@
             this.checkBoxisDoBApplicable = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxRegNo
@@ -54,7 +57,8 @@
             this.textBoxRegNo.Location = new System.Drawing.Point(166, 83);
             this.textBoxRegNo.Name = "textBoxRegNo";
             this.textBoxRegNo.Size = new System.Drawing.Size(184, 26);
-            this.textBoxRegNo.TabIndex = 56;
+            this.textBoxRegNo.TabIndex = 2;
+            this.textBoxRegNo.Leave += new System.EventHandler(this.textBoxRegNo_Leave);
             // 
             // lblHeading
             // 
@@ -81,7 +85,7 @@
             // lblRegNo
             // 
             this.lblRegNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegNo.Location = new System.Drawing.Point(47, 86);
+            this.lblRegNo.Location = new System.Drawing.Point(47, 84);
             this.lblRegNo.Name = "lblRegNo";
             this.lblRegNo.Size = new System.Drawing.Size(118, 27);
             this.lblRegNo.TabIndex = 48;
@@ -114,28 +118,29 @@
             this.dateTimePickerDoB.Location = new System.Drawing.Point(166, 155);
             this.dateTimePickerDoB.Name = "dateTimePickerDoB";
             this.dateTimePickerDoB.Size = new System.Drawing.Size(249, 23);
-            this.dateTimePickerDoB.TabIndex = 44;
+            this.dateTimePickerDoB.TabIndex = 6;
             // 
             // textBoxContact
             // 
             this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxContact.Location = new System.Drawing.Point(444, 118);
+            this.textBoxContact.Location = new System.Drawing.Point(461, 118);
             this.textBoxContact.Name = "textBoxContact";
             this.textBoxContact.Size = new System.Drawing.Size(191, 26);
-            this.textBoxContact.TabIndex = 41;
+            this.textBoxContact.TabIndex = 5;
+            this.textBoxContact.Leave += new System.EventHandler(this.textBoxContact_Leave);
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLastName.Location = new System.Drawing.Point(444, 51);
+            this.textBoxLastName.Location = new System.Drawing.Point(461, 51);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(191, 26);
-            this.textBoxLastName.TabIndex = 40;
+            this.textBoxLastName.TabIndex = 1;
             // 
             // lblLastName
             // 
             this.lblLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastName.Location = new System.Drawing.Point(352, 51);
+            this.lblLastName.Location = new System.Drawing.Point(369, 51);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(107, 23);
             this.lblLastName.TabIndex = 51;
@@ -145,7 +150,7 @@
             // lblContct
             // 
             this.lblContct.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContct.Location = new System.Drawing.Point(352, 118);
+            this.lblContct.Location = new System.Drawing.Point(369, 118);
             this.lblContct.Name = "lblContct";
             this.lblContct.Size = new System.Drawing.Size(107, 27);
             this.lblContct.TabIndex = 52;
@@ -155,7 +160,7 @@
             // lblGender
             // 
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(356, 75);
+            this.lblGender.Location = new System.Drawing.Point(369, 80);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(86, 34);
             this.lblGender.TabIndex = 54;
@@ -168,7 +173,8 @@
             this.textBoxEmail.Location = new System.Drawing.Point(166, 117);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(184, 26);
-            this.textBoxEmail.TabIndex = 42;
+            this.textBoxEmail.TabIndex = 4;
+            this.textBoxEmail.Leave += new System.EventHandler(this.textBoxEmail_Leave);
             // 
             // textBoxFirstName
             // 
@@ -176,7 +182,8 @@
             this.textBoxFirstName.Location = new System.Drawing.Point(166, 51);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(184, 26);
-            this.textBoxFirstName.TabIndex = 39;
+            this.textBoxFirstName.TabIndex = 0;
+            this.textBoxFirstName.Leave += new System.EventHandler(this.textBoxFirstName_Leave);
             // 
             // comboBoxGender
             // 
@@ -188,10 +195,10 @@
             "Male",
             "Female",
             "NULL"});
-            this.comboBoxGender.Location = new System.Drawing.Point(444, 83);
+            this.comboBoxGender.Location = new System.Drawing.Point(461, 83);
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(191, 28);
-            this.comboBoxGender.TabIndex = 43;
+            this.comboBoxGender.TabIndex = 3;
             // 
             // checkBoxisDoBApplicable
             // 
@@ -200,7 +207,7 @@
             this.checkBoxisDoBApplicable.Location = new System.Drawing.Point(444, 157);
             this.checkBoxisDoBApplicable.Name = "checkBoxisDoBApplicable";
             this.checkBoxisDoBApplicable.Size = new System.Drawing.Size(121, 22);
-            this.checkBoxisDoBApplicable.TabIndex = 45;
+            this.checkBoxisDoBApplicable.TabIndex = 7;
             this.checkBoxisDoBApplicable.Text = "Not Applicable";
             this.checkBoxisDoBApplicable.UseVisualStyleBackColor = true;
             this.checkBoxisDoBApplicable.CheckedChanged += new System.EventHandler(this.checkBoxisDoBApplicable_CheckedChanged);
@@ -211,7 +218,7 @@
             this.btnCancel.Location = new System.Drawing.Point(511, 189);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 28);
-            this.btnCancel.TabIndex = 46;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -222,10 +229,15 @@
             this.btnEdit.Location = new System.Drawing.Point(586, 189);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(49, 28);
-            this.btnEdit.TabIndex = 47;
+            this.btnEdit.TabIndex = 9;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // EditStudent
             // 
@@ -257,6 +269,7 @@
             this.Text = "EditStudent";
             this.Load += new System.EventHandler(this.EditStudent_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.EditStudent_MouseDown);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,5 +295,6 @@
         private System.Windows.Forms.CheckBox checkBoxisDoBApplicable;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
