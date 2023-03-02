@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ProjectA.Extras;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,13 @@ namespace ProjectA.BL
             this.dateOfBirth = dateOfBirth;
 
         }
-
+        public static int retrieveId()
+        {
+            //Getting latest autoincremented id
+            SqlConnection con = Configuration.getInstance().getConnection();
+            SqlCommand cmd = new SqlCommand("Select MAX(id) from Person", con);
+            return (Int32)cmd.ExecuteScalar();
+        }
         public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }

@@ -13,39 +13,27 @@ using System.Windows.Forms;
 
 namespace ProjectA.Forms
 {
-    public partial class AddAdvisor : Form
+    public partial class EditAdvisor : Form
     {
-
         Advisor a;
         SqlConnection con;
-        public AddAdvisor()
+        public EditAdvisor(Advisor advisor)
         {
             InitializeComponent();
-            start();
-        }
-        private void start()
-        {
-            a = new Advisor();
+            this.a = advisor;
             con = Configuration.getInstance().getConnection();
-            a.DateOfBirth = dateTimePickerDoB.Value.ToString();
-            comboBoxGender.SelectedIndex = 0;
-            comboBoxDesignation.SelectedIndex = 0;
-        }
-
-        private void AddAdvisor_MouseDown(object sender, MouseEventArgs e)
-        {
-            Extras.Drag.dragPage(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-
+        }
+        private void EditAdvisor_MouseDown(object sender, MouseEventArgs e)
+        {
+            Extras.Drag.dragPage(this);
         }
 
-
-
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             try
             {
@@ -95,11 +83,11 @@ namespace ProjectA.Forms
 
                     }
                     string designation = "";
-                    //Checking whether gender is valid or not
+                    //Checking whether designation is valid or not
                     try
                     {
                         designation = comboBoxDesignation.SelectedItem.ToString();
-                        //Getting Gender in int from lookup table
+                        //Getting designation in int from lookup table
                         cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
                         cmd.Parameters.AddWithValue("@value", designation);
                         cmd.Parameters.AddWithValue("@category", "designation");
@@ -119,9 +107,11 @@ namespace ProjectA.Forms
                     {
                         a.Salary = int.Parse(textBoxSalary.Text);
                     }
-                    //Adding data in person table
-                    cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
+                    //updating data in person table
+                    cmd = new SqlCommand("Update  Person Set firstName=@firstName, lastName=@lastName, contact=@contact,email=@email,dateofbirth=@dob,gender=@gender where id=@id", con);
                     cmd.Parameters.AddWithValue("@firstName", a.FirstName);
+                    cmd.Parameters.AddWithValue("@id", a.Id);
+
                     //inserting null values in database if user has not provided full informations
                     if (a.LastName == "")
                     {
@@ -158,10 +148,9 @@ namespace ProjectA.Forms
                         cmd.Parameters.AddWithValue("@gender", a.Gender);
                     }
                     cmd.ExecuteNonQuery();
-                    //getting id of person which is auto genrated on above entry 
-                    a.Id = Person.retrieveId();
+                 
                     //Inserting data in student table
-                    cmd = new SqlCommand("Insert into Advisor values (@id, @designation,@salary)", con);
+                    cmd = new SqlCommand("Update  Advisor SET  designation=@designation,salary=@salary where id=@id", con);
                     cmd.Parameters.AddWithValue("@id", a.Id);
                     if (a.Salary == -1)
                     {
@@ -173,7 +162,7 @@ namespace ProjectA.Forms
                     }
                     cmd.Parameters.AddWithValue("@designation", a.Designation);
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Added");
+                    MessageBox.Show("Updated");
                     this.Close();
                 }
                 else
@@ -187,33 +176,57 @@ namespace ProjectA.Forms
             }
         }
 
-
-
-
-
-
-
-        private void textBoxSalary_Leave(object sender, EventArgs e)
+        private void EditAdvisor_Load(object sender, EventArgs e)
         {
-            Validations.validateIntTextBox(textBoxSalary, errorProvider);
+            loadPreviousData();
+        }
+        private void loadPreviousData()
+        {
+            textBoxFirstName.Text = a.FirstName;
+            textBoxLastName.Text = a.LastName;
+            if (a.Salary != -1)
+            {
+                textBoxSalary.Text = a.Salary.ToString();
+            }
+            textBoxEmail.Text = a.Email;
+            txtBoxContact.Text = a.Contact;
+            //getting designation from lookup table
+            SqlCommand cmd = new SqlCommand("Select value from Lookup Where id = @id and Category = @category", con);
+            cmd.Parameters.AddWithValue("@id", a.Designation);
+            cmd.Parameters.AddWithValue("@category", "designation");
+            comboBoxDesignation.SelectedItem = cmd.ExecuteScalar();
+            if (a.Gender == -1)
+            {
+                comboBoxGender.SelectedIndex = 2;
+            }
+            else
+            {
+                comboBoxGender.SelectedIndex = a.Gender - 1;
+            }
+            if (a.DateOfBirth == "")
+            {
+                checkBoxisDoBApplicable.Checked = true;
+                dateTimePickerDoB.Enabled = false;
+            }
+            else
+            {
+                dateTimePickerDoB.Value = Convert.ToDateTime(a.DateOfBirth);
+            }
 
         }
-        private void textBoxFirstName_Leave(object sender, EventArgs e)
+
+        private void checkBoxisDoBApplicable_CheckedChanged(object sender, EventArgs e)
         {
-            Validations.validateTextBox(textBoxFirstName, errorProvider);
-        }
-
-        private void textBoxEmail_Leave(object sender, EventArgs e)
-        {
-            Validations.validateTextBox(textBoxEmail, errorProvider);
-
-
-        }
-
-        private void txtBoxContact_Leave(object sender, EventArgs e)
-        {
-            Validations.validateIntTextBox(txtBoxContact, errorProvider);
-
+            if (checkBoxisDoBApplicable.Checked)
+            {
+                dateTimePickerDoB.Enabled = false;
+                a.DateOfBirth = null;
+            }
+            else
+            {
+                dateTimePickerDoB.Enabled = true;
+                a.DateOfBirth = dateTimePickerDoB.Value.ToString();
+            }
         }
     }
 }

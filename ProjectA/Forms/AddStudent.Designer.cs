@@ -116,7 +116,6 @@
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(191, 26);
             this.textBoxLastName.TabIndex = 1;
-     
             // 
             // lblLastName
             // 
@@ -180,7 +179,6 @@
             this.comboBoxGender.Name = "comboBoxGender";
             this.comboBoxGender.Size = new System.Drawing.Size(191, 28);
             this.comboBoxGender.TabIndex = 3;
-       
             // 
             // checkBoxisDoBApplicable
             // 
@@ -197,7 +195,7 @@
             // btnCancel
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(504, 182);
+            this.btnCancel.Location = new System.Drawing.Point(526, 179);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 28);
             this.btnCancel.TabIndex = 8;
@@ -208,7 +206,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(579, 182);
+            this.btnAdd.Location = new System.Drawing.Point(601, 179);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(49, 28);
             this.btnAdd.TabIndex = 9;

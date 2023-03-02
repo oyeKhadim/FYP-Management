@@ -83,6 +83,10 @@ namespace ProjectA.Forms
                             cmd.Parameters.AddWithValue("@category", "Gender");
                             s.Gender = (Int32)cmd.ExecuteScalar();
                         }
+                        else
+                        {
+                            s.Gender = -1;
+                        }
                     }
                     catch
                     {
@@ -120,7 +124,7 @@ namespace ProjectA.Forms
                         cmd.Parameters.AddWithValue("@dob", DBNull.Value);
 
                     }
-                    if (s.Gender == 0)
+                    if (s.Gender == -1)
                     {
                         cmd.Parameters.AddWithValue("@gender", DBNull.Value);
                     }
@@ -130,7 +134,7 @@ namespace ProjectA.Forms
                     }
                     cmd.ExecuteNonQuery();
                     //getting id of person which is auto genrated on above entry 
-                    s.Id = retrieveId();
+                    s.Id =Person.retrieveId();
                     //Inserting data in student table
                     cmd = new SqlCommand("Insert into Student values (@id, @registrationNo)", con);
                     cmd.Parameters.AddWithValue("@id", s.Id);
@@ -149,12 +153,7 @@ namespace ProjectA.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-        private int retrieveId()
-        {
-            //Getting latest autoincremented id
-            SqlCommand cmd = new SqlCommand("Select MAX(id) from Person", con);
-            return (Int32)cmd.ExecuteScalar();
-        }
+    
 
         private void dateTimePickerDoB_ValueChanged(object sender, EventArgs e)
         {

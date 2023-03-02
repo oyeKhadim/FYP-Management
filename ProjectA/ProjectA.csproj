@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BL\Advisor.cs" />
     <Compile Include="BL\Person.cs" />
     <Compile Include="BL\Student.cs" />
     <Compile Include="Extras\Configuration.cs" />
@@ -80,6 +81,12 @@
     </Compile>
     <Compile Include="Forms\AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditAdvisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditAdvisor.Designer.cs">
+      <DependentUpon>EditAdvisor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditStudent.cs">
       <SubType>Form</SubType>
@@ -131,6 +138,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditAdvisor.resx">
+      <DependentUpon>EditAdvisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditStudent.resx">
       <DependentUpon>EditStudent.cs</DependentUpon>

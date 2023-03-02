@@ -32,7 +32,7 @@ namespace ProjectA.Forms
             textBoxRegNo.Text = s.RegistrationNo;
             textBoxEmail.Text = s.Email;
             textBoxContact.Text = s.Contact;
-            if (s.Gender == 0)
+            if (s.Gender == -1)
             {
                 comboBoxGender.SelectedIndex = 2;
             }
@@ -118,6 +118,10 @@ namespace ProjectA.Forms
                             cmd.Parameters.AddWithValue("@category", "Gender");
                             s.Gender = (Int32)cmd.ExecuteScalar();
                         }
+                        else
+                        {
+                            s.Gender = -1;
+                        }
                     }
                     catch
                     {
@@ -155,7 +159,7 @@ namespace ProjectA.Forms
                         cmd.Parameters.AddWithValue("@dob", DBNull.Value);
 
                     }
-                    if (s.Gender == 0)
+                    if (s.Gender == -1)
                     {
                         cmd.Parameters.AddWithValue("@gender", DBNull.Value);
                     }

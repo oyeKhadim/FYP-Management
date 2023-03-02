@@ -29,7 +29,7 @@ namespace ProjectA.Forms
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Join Lookup L on L.Id=Gender", con);
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Left Join Lookup L on L.Id=Gender", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -69,6 +69,10 @@ namespace ProjectA.Forms
                     cmd.Parameters.AddWithValue("@category", "Gender");
                     student.Gender = (Int32)cmd.ExecuteScalar();
                 }
+                else
+                {
+                    student.Gender = -1;
+                }
             }
             catch (Exception ex)
             {
@@ -81,11 +85,10 @@ namespace ProjectA.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Join Lookup L on L.Id=Gender where RegistrationNo=@RegistrationNo", con);
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Left Join Lookup L on L.Id=Gender where RegistrationNo=@RegistrationNo", con);
                 cmd.Parameters.AddWithValue("@RegistrationNo", txtBoxSearch.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
