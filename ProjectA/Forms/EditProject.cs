@@ -13,11 +13,14 @@ using System.Windows.Forms;
 
 namespace ProjectA.Forms
 {
-    public partial class AddProject : Form
+    public partial class EditProject : Form
     {
-        public AddProject()
+        private Project project;
+        public EditProject(Project project)
         {
             InitializeComponent();
+            this.project = project;
+         
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -25,12 +28,17 @@ namespace ProjectA.Forms
             this.Close();
         }
 
-        private void AddProject_MouseDown(object sender, MouseEventArgs e)
+        private void EditProject_Load(object sender, EventArgs e)
         {
-            Extras.Drag.dragPage(this);
+            loadPreviousData();
+        }
+        private void loadPreviousData()
+        {
+            textBoxTitle.Text = project.Title;
+            richTextBoxDescription.Text = project.Description;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
 
             try
@@ -39,8 +47,7 @@ namespace ProjectA.Forms
                 SqlConnection con = Configuration.getInstance().getConnection();
                 bool isAllInfoValid = true;
                 isAllInfoValid = Validations.validateTextBox(textBoxTitle, errorProvider);
-                Validations.validateTextBox(textBoxTitle, errorProvider);
-                Project project = new Project();
+                //Validations.validateTextBox(textBoxTitle, errorProvider);
                 project.Title = textBoxTitle.Text;
                 project.Description = richTextBoxDescription.Text;
 
@@ -50,8 +57,9 @@ namespace ProjectA.Forms
                     SqlCommand cmd;
 
 
-                    //Adding data in project table
-                    cmd = new SqlCommand("Insert into project values ( @description,@title)", con);
+                    //updating data in project table
+                    cmd = new SqlCommand("Update Project SET description=@description,title=@title where id=@id", con);
+                    cmd.Parameters.AddWithValue("@id", project.Id);
                     cmd.Parameters.AddWithValue("@title", project.Title);
                     //inserting null values in database if user has not provided full informations
                     if (project.Description == "")
@@ -63,7 +71,7 @@ namespace ProjectA.Forms
                         cmd.Parameters.AddWithValue("@description", project.Description);
                     }
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Added");
+                    MessageBox.Show("updated");
                     this.Close();
                 }
                 else

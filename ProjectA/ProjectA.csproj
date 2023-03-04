@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BL\Advisor.cs" />
     <Compile Include="BL\Person.cs" />
+    <Compile Include="BL\Project.cs" />
     <Compile Include="BL\Student.cs" />
     <Compile Include="Extras\Configuration.cs" />
     <Compile Include="Extras\Drag.cs" />
@@ -87,6 +88,12 @@
     </Compile>
     <Compile Include="Forms\EditAdvisor.Designer.cs">
       <DependentUpon>EditAdvisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditProject.Designer.cs">
+      <DependentUpon>EditProject.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditStudent.cs">
       <SubType>Form</SubType>
@@ -141,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditAdvisor.resx">
       <DependentUpon>EditAdvisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditProject.resx">
+      <DependentUpon>EditProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditStudent.resx">
       <DependentUpon>EditStudent.cs</DependentUpon>

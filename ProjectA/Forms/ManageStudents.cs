@@ -34,6 +34,7 @@ namespace ProjectA.Forms
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgv.DataSource = dt;
+                dgv.Columns["ID"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -98,6 +99,7 @@ namespace ProjectA.Forms
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgv.DataSource = dt;
+                dgv.Columns["ID"].Visible = false;
             }
             catch (Exception ex)
             {
