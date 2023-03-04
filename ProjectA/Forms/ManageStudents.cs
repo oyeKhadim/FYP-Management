@@ -85,10 +85,14 @@ namespace ProjectA.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            searchWithRegNo();
+        }
+        private void searchWithRegNo()
+        {
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Left Join Lookup L on L.Id=Gender where RegistrationNo=@RegistrationNo", con);
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Left Join Lookup L on L.Id=Gender where RegistrationNo LIKE  \'%" + txtBoxSearch.Text + "%\'", con);
                 cmd.Parameters.AddWithValue("@RegistrationNo", txtBoxSearch.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -99,6 +103,17 @@ namespace ProjectA.Forms
             {
                 MessageBox.Show("Error : " + ex.Message);
             }
+        }
+
+        private void txtBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            searchWithRegNo();
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            txtBoxSearch.Text = "";
+            loadData();
         }
     }
 }
