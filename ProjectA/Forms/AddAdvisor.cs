@@ -56,7 +56,7 @@ namespace ProjectA.Forms
                     Validations.validateIntTextBox(textBoxSalary, errorProvider) &&
                 Validations.validateIntTextBox(txtBoxContact, errorProvider) &&
                 Validations.validateEmailTextBox(textBoxEmail, errorProvider);
-                Validations.validateTextBox(textBoxFirstName, errorProvider);
+         
                 Validations.validateTextBox(textBoxEmail, errorProvider);
                 Validations.validateIntTextBox(textBoxSalary, errorProvider);
                 Validations.validateIntTextBox(txtBoxContact, errorProvider);

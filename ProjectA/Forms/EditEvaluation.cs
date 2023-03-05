@@ -13,11 +13,18 @@ using System.Windows.Forms;
 
 namespace ProjectA.Forms
 {
-    public partial class AddEvaluation : Form
+    public partial class EditEvaluation : Form
     {
-        public AddEvaluation()
+        private Evaluation evaluation;
+        public EditEvaluation(Evaluation evaluation)
         {
             InitializeComponent();
+            this.evaluation = evaluation;
+        }
+
+        private void EditEvaluation_MouseDown(object sender, MouseEventArgs e)
+        {
+            Extras.Drag.dragPage(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -25,12 +32,16 @@ namespace ProjectA.Forms
             this.Close();
         }
 
-        private void AddEvaluation_MouseDown(object sender, MouseEventArgs e)
+        private void EditEvaluation_Load(object sender, EventArgs e)
         {
-            Extras.Drag.dragPage(this);
+            textBoxName.Text = evaluation.Name;
+            textBoxTotalMarks.Text = evaluation.TotalMarks.ToString();
+            textBoxWeightage.Text = evaluation.TotalWeightage.ToString();
+            textBoxTotalMarks.Enabled = false;
+            textBoxWeightage.Enabled = false;
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
 
             try
@@ -43,34 +54,34 @@ namespace ProjectA.Forms
                     Validations.validateTextBox(textBoxWeightage, errorProvider) &&
                     Validations.validateIntTextBox(textBoxTotalMarks, errorProvider) &&
                     Validations.validateIntTextBox(textBoxWeightage, errorProvider);
-         
                 Validations.validateTextBox(textBoxTotalMarks, errorProvider);
                 Validations.validateTextBox(textBoxWeightage, errorProvider);
                 Validations.validateIntTextBox(textBoxTotalMarks, errorProvider);
                 Validations.validateIntTextBox(textBoxWeightage, errorProvider);
- 
-                Evaluation evaluation = new Evaluation();
+
 
 
                 //if all fields all fill correctly store in database
                 if (isAllInfoValid)
                 {
                     evaluation.Name = textBoxName.Text;
-                    evaluation.TotalMarks = int.Parse(textBoxTotalMarks.Text);
-                    evaluation.TotalWeightage = int.Parse(textBoxWeightage.Text);
+                    //evaluation.TotalMarks = int.Parse(textBoxTotalMarks.Text);
+                    //evaluation.TotalWeightage = int.Parse(textBoxWeightage.Text);
 
                     SqlCommand cmd;
 
 
                     //Adding data in project table
-                    cmd = new SqlCommand("Insert into Evaluation values ( @name,@marks,@weightage)", con);
+                    cmd = new SqlCommand("Update Evaluation SET  name=@name Where id=@id", con);
+                    //cmd = new SqlCommand("Update Evaluation SET  name=@name,totalmarks=@marks,TotalWeightage=@weightage Where id=@id", con);
+                    cmd.Parameters.AddWithValue("@id", evaluation.Id);
                     cmd.Parameters.AddWithValue("@name", evaluation.Name);
-                    cmd.Parameters.AddWithValue("@marks", evaluation.TotalMarks);
-                    cmd.Parameters.AddWithValue("@weightage", evaluation.TotalWeightage);
+                    //cmd.Parameters.AddWithValue("@marks", evaluation.TotalMarks);
+                    //cmd.Parameters.AddWithValue("@weightage", evaluation.TotalWeightage);
                     //inserting null values in database if user has not provided full informations
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Added");
+                    MessageBox.Show("Updated");
                     this.Close();
                 }
                 else
@@ -83,7 +94,5 @@ namespace ProjectA.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-
-
     }
 }

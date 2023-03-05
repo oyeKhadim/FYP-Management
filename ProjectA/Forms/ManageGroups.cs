@@ -26,5 +26,10 @@ namespace ProjectA.Forms
         {
             ThemeColor.loadTheme(this.tableLayoutPanel);
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

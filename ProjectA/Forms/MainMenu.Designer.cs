@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             this.panelTopBar = new System.Windows.Forms.Panel();
             this.btnCloseChildForm = new System.Windows.Forms.Button();
             this.lblTopBar = new System.Windows.Forms.Label();
@@ -40,10 +41,14 @@
             this.buttonManageStudents = new System.Windows.Forms.Button();
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonManageEvaluations = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTopBar.SuspendLayout();
             this.paneltopLeft.SuspendLayout();
             this.panelSideBar.SuspendLayout();
+            this.panelChildForm.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -108,6 +113,7 @@
             // panelSideBar
             // 
             this.panelSideBar.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.panelSideBar.Controls.Add(this.buttonManageEvaluations);
             this.panelSideBar.Controls.Add(this.buttonManageGroups);
             this.panelSideBar.Controls.Add(this.buttonManageProjects);
             this.panelSideBar.Controls.Add(this.buttonManageAdvisors);
@@ -194,6 +200,7 @@
             // panelChildForm
             // 
             this.panelChildForm.BackColor = System.Drawing.SystemColors.Control;
+            this.panelChildForm.Controls.Add(this.pictureBox1);
             this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelChildForm.Location = new System.Drawing.Point(189, 43);
             this.panelChildForm.Name = "panelChildForm";
@@ -217,6 +224,33 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(984, 511);
             this.tableLayoutPanel.TabIndex = 3;
             // 
+            // buttonManageEvaluations
+            // 
+            this.buttonManageEvaluations.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.buttonManageEvaluations.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonManageEvaluations.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonManageEvaluations.FlatAppearance.BorderSize = 0;
+            this.buttonManageEvaluations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonManageEvaluations.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonManageEvaluations.ForeColor = System.Drawing.Color.White;
+            this.buttonManageEvaluations.Location = new System.Drawing.Point(0, 197);
+            this.buttonManageEvaluations.Name = "buttonManageEvaluations";
+            this.buttonManageEvaluations.Size = new System.Drawing.Size(186, 39);
+            this.buttonManageEvaluations.TabIndex = 6;
+            this.buttonManageEvaluations.Text = "Manage Evaluations";
+            this.buttonManageEvaluations.UseVisualStyleBackColor = false;
+            this.buttonManageEvaluations.Click += new System.EventHandler(this.buttonManageEvaluations_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(197, 76);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(390, 300);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -234,7 +268,9 @@
             this.paneltopLeft.ResumeLayout(false);
             this.paneltopLeft.PerformLayout();
             this.panelSideBar.ResumeLayout(false);
+            this.panelChildForm.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -252,5 +288,7 @@
         private System.Windows.Forms.Button btnCloseChildForm;
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
+        private System.Windows.Forms.Button buttonManageEvaluations;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

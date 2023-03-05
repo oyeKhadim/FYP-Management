@@ -144,5 +144,10 @@ namespace ProjectA.Forms
         {
 
         }
+
+        private void buttonManageEvaluations_Click(object sender, EventArgs e)
+        {
+            openCildForm(new Forms.ManageEvaluations(), sender);
+        }
     }
 }

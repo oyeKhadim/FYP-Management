@@ -22,3 +22,5 @@ D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Fo
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.EditStudent.resources
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.EditAdvisor.resources
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.EditProject.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.ManageEvaluations.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.EditEvaluation.resources

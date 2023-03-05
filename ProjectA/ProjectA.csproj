@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BL\Advisor.cs" />
+    <Compile Include="BL\Evaluation.cs" />
     <Compile Include="BL\Person.cs" />
     <Compile Include="BL\Project.cs" />
     <Compile Include="BL\Student.cs" />
@@ -89,6 +90,12 @@
     <Compile Include="Forms\EditAdvisor.Designer.cs">
       <DependentUpon>EditAdvisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EditEvaluation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditEvaluation.Designer.cs">
+      <DependentUpon>EditEvaluation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EditProject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +119,12 @@
     </Compile>
     <Compile Include="Forms\ManageAdvisors.Designer.cs">
       <DependentUpon>ManageAdvisors.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ManageEvaluations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ManageEvaluations.Designer.cs">
+      <DependentUpon>ManageEvaluations.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ManageGroups.cs">
       <SubType>Form</SubType>
@@ -149,6 +162,9 @@
     <EmbeddedResource Include="Forms\EditAdvisor.resx">
       <DependentUpon>EditAdvisor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditEvaluation.resx">
+      <DependentUpon>EditEvaluation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditProject.resx">
       <DependentUpon>EditProject.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManageAdvisors.resx">
       <DependentUpon>ManageAdvisors.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ManageEvaluations.resx">
+      <DependentUpon>ManageEvaluations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManageGroups.resx">
       <DependentUpon>ManageGroups.cs</DependentUpon>
