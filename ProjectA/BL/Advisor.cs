@@ -28,7 +28,7 @@ namespace ProjectA.BL
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName+' '+LastName Name,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation Where FirstName+' '+Lastname like \'%" + (search + "%\'"), con);
+                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName,LastName ,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation Where FirstName+' '+Lastname like \'%" + (search + "%\'"), con);
                 //cmd.Parameters.AddWithValue("@FirstName", txtBoxSearch.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -47,7 +47,7 @@ namespace ProjectA.BL
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName+' '+LastName Name,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation", con);
+                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName,LastName ,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

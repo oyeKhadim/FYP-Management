@@ -110,5 +110,15 @@ namespace ProjectA.Forms
             txtBoxSearch.Text = "";
             loadData();
         }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblHeading_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BL\Advisor.cs" />
     <Compile Include="BL\Evaluation.cs" />
+    <Compile Include="BL\LookupClass.cs" />
     <Compile Include="BL\Person.cs" />
     <Compile Include="BL\Project.cs" />
     <Compile Include="BL\ProjectAdvisor.cs" />
@@ -91,6 +92,12 @@
     <Compile Include="Forms\AssignAdvisor.Designer.cs">
       <DependentUpon>AssignAdvisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AssignProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AssignProject.Designer.cs">
+      <DependentUpon>AssignProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EditAdvisor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,11 +122,23 @@
     <Compile Include="Forms\EditStudent.Designer.cs">
       <DependentUpon>EditStudent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\EvaluateGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EvaluateGroup.Designer.cs">
+      <DependentUpon>EvaluateGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainMenu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MakeGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MakeGroup.Designer.cs">
+      <DependentUpon>MakeGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ManageAdvisors.cs">
       <SubType>Form</SubType>
@@ -151,6 +170,12 @@
     <Compile Include="Forms\ManageStudents.Designer.cs">
       <DependentUpon>ManageStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\UpdateGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UpdateGroup.Designer.cs">
+      <DependentUpon>UpdateGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extras\ThemeColor.cs" />
@@ -169,6 +194,9 @@
     <EmbeddedResource Include="Forms\AssignAdvisor.resx">
       <DependentUpon>AssignAdvisor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AssignProject.resx">
+      <DependentUpon>AssignProject.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditAdvisor.resx">
       <DependentUpon>EditAdvisor.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,8 +209,14 @@
     <EmbeddedResource Include="Forms\EditStudent.resx">
       <DependentUpon>EditStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EvaluateGroup.resx">
+      <DependentUpon>EvaluateGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MakeGroup.resx">
+      <DependentUpon>MakeGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManageAdvisors.resx">
       <DependentUpon>ManageAdvisors.cs</DependentUpon>
@@ -198,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManageStudents.resx">
       <DependentUpon>ManageStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UpdateGroup.resx">
+      <DependentUpon>UpdateGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

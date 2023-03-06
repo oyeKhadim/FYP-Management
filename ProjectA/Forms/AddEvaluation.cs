@@ -60,7 +60,14 @@ namespace ProjectA.Forms
                     evaluation.TotalWeightage = int.Parse(textBoxWeightage.Text);
 
                     SqlCommand cmd;
-
+                    //checking weightage of evaluations
+                    cmd = new SqlCommand("select sum(totalweightage) from Evaluation", con);
+                    int sumOfWeightage = (Int32)cmd.ExecuteScalar();
+                    if (sumOfWeightage + int.Parse(textBoxWeightage.Text) > 100)
+                    {
+                        throw new Exception("Sum of TotalWeightage of all evaluations cannot exceed 100" +
+                            "\nRemaining Weightage : "+(100-sumOfWeightage));
+                    }
 
                     //Adding data in project table
                     cmd = new SqlCommand("Insert into Evaluation values ( @name,@marks,@weightage)", con);

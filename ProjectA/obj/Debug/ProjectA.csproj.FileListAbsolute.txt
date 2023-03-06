@@ -25,3 +25,7 @@ D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Fo
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.ManageEvaluations.resources
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.EditEvaluation.resources
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.AssignAdvisor.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.MakeGroup.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.UpdateGroup.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.AssignProject.resources
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.EvaluateGroup.resources

@@ -29,10 +29,13 @@ namespace ProjectA.Forms
 
         private void txtBoxSearchAdvisor_TextChanged(object sender, EventArgs e)
         {
-            DataTable dt = Advisor.searchWithName(txtBoxSearchAdvisor.Text);
-            dgvAdvisors.DataSource = dt;
-            dgvAdvisors.Columns["ID"].Visible = false;
-            projectAdvisor.AdvisorId = getAdvisorId();
+            if (txtBoxSearchAdvisor.Text != searchByName)
+            {
+                DataTable dt = Advisor.searchWithName(txtBoxSearchAdvisor.Text);
+                dgvAdvisors.DataSource = dt;
+                dgvAdvisors.Columns["ID"].Visible = false;
+                projectAdvisor.AdvisorId = getAdvisorId();
+            }
 
         }
 
@@ -84,6 +87,7 @@ namespace ProjectA.Forms
         private void AssignAdvisor_Load(object sender, EventArgs e)
         {
             loadData();
+
             comboBoxAdvisorRole.SelectedIndex = 0;
             projectAdvisor.AdvisorId = getAdvisorId();
             projectAdvisor.ProjectId = getProjectId();
@@ -93,10 +97,12 @@ namespace ProjectA.Forms
 
         private void loadData()
         {
+            SqlConnection con = Configuration.getInstance().getConnection();
+            SqlCommand cmd;
             try
             {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName+' '+LastName Name,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation", con);
+
+                cmd = new SqlCommand("Select A.ID,FirstName+' '+LastName Name,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -109,8 +115,8 @@ namespace ProjectA.Forms
             }
             try
             {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select * from Project", con);
+
+                cmd = new SqlCommand("Select * from Project", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -122,8 +128,8 @@ namespace ProjectA.Forms
             }
             try
             {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select value from Lookup where category=@category", con);
+
+                cmd = new SqlCommand("Select value from Lookup where category=@category", con);
                 cmd.Parameters.AddWithValue("@category", "ADVISOR_ROLE");
                 SqlDataReader DR = cmd.ExecuteReader();
                 while (DR.Read())
@@ -163,22 +169,41 @@ namespace ProjectA.Forms
         private int getAdvisorId()
         {
             int col = 0;
-            int id = int.Parse(dgvAdvisors.SelectedRows[0].Cells[col++].Value.ToString());
-            return id;
+            try
+            {
+                int id = int.Parse(dgvAdvisors.SelectedRows[0].Cells[col++].Value.ToString());
+                return id;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
         }
 
         private int getProjectId()
         {
+
             int col = 0;
-            int id = int.Parse(dgvProjects.SelectedRows[0].Cells[col++].Value.ToString());
-            return id;
+            try
+            {
+                int id = int.Parse(dgvProjects.SelectedRows[0].Cells[col++].Value.ToString());
+                return id;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
         }
 
         private void textBoxSearchProject_TextChanged(object sender, EventArgs e)
         {
+            if (textBoxSearchProject.Text != searchByName)
+            {
+
             DataTable dt = Project.searchWithTitle(textBoxSearchProject.Text);
             fillDGV(dt);
             projectAdvisor.ProjectId = getProjectId();
+            }
         }
 
         private void comboBoxAdvisorRole_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,22 +213,22 @@ namespace ProjectA.Forms
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            string aRole = comboBoxAdvisorRole.SelectedItem.ToString();
+
             try
             {
-                bool flag = false;
-                foreach (string s in advisorRoles)
+                string aRole;
+                try
                 {
-                    if (s == aRole)
-                    {
-                        flag = true;
-                    }
+                    aRole = comboBoxAdvisorRole.SelectedItem.ToString();
                 }
-                if (!flag)
+                catch
                 {
+
+
                     errorProvider.SetError(comboBoxAdvisorRole, "Choose correct Role");
                     throw new Exception("Please Choose Correct Advisor Role");
                 }
+
                 SqlCommand cmd;
                 SqlConnection con = Configuration.getInstance().getConnection();
                 //Getting role in int from lookup table
@@ -214,22 +239,29 @@ namespace ProjectA.Forms
                 projectAdvisor.AssignmentDate = DateTime.Now;
 
                 //Inserting data in  table
-                cmd = new SqlCommand("Insert into ProjectAdvisor values (@advisroId,@projectId,@aRole,@date)", con);
-                cmd.Parameters.AddWithValue("@advisroId", projectAdvisor.AdvisorId);
-                cmd.Parameters.AddWithValue("@projectId", projectAdvisor.ProjectId);
-                cmd.Parameters.AddWithValue("@aRole", projectAdvisor.AdvisorRole);
-                cmd.Parameters.AddWithValue("@date", projectAdvisor.AssignmentDate);
-       
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd = new SqlCommand("Insert into ProjectAdvisor values (@advisroId,@projectId,@aRole,@date)", con);
+                    cmd.Parameters.AddWithValue("@advisroId", projectAdvisor.AdvisorId);
+                    cmd.Parameters.AddWithValue("@projectId", projectAdvisor.ProjectId);
+                    cmd.Parameters.AddWithValue("@aRole", projectAdvisor.AdvisorRole);
+                    cmd.Parameters.AddWithValue("@date", projectAdvisor.AssignmentDate);
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new Exception("This Advisor is Already Assigned to this project");
+                }
                 MessageBox.Show("Assigned");
                 loadData();
 
 
 
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
-                MessageBox.Show("Error : ", ex.Message); 
+                MessageBox.Show(ex.Message);
 
             }
         }
