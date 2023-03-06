@@ -68,30 +68,17 @@ namespace ProjectA.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            searchWithTitle();
+            DataTable dt = Project.searchWithTitle(txtBoxSearch.Text);
+            fillDGV(dt);
         }
 
-        private void searchWithTitle()
-        {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-              
-                SqlCommand cmd = new SqlCommand("Select * from Project where title LIKE \'%" + txtBoxSearch.Text + "%\'", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                fillDGV(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
-        }
+
 
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            searchWithTitle();
+            DataTable dt = Project.searchWithTitle(txtBoxSearch.Text);
+            fillDGV(dt);
+
         }
 
         private void btnReload_Click(object sender, EventArgs e)

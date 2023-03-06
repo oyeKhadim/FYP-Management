@@ -56,6 +56,7 @@
     <Compile Include="BL\Evaluation.cs" />
     <Compile Include="BL\Person.cs" />
     <Compile Include="BL\Project.cs" />
+    <Compile Include="BL\ProjectAdvisor.cs" />
     <Compile Include="BL\Student.cs" />
     <Compile Include="Extras\Configuration.cs" />
     <Compile Include="Extras\Drag.cs" />
@@ -83,6 +84,12 @@
     </Compile>
     <Compile Include="Forms\AddStudent.Designer.cs">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AssignAdvisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AssignAdvisor.Designer.cs">
+      <DependentUpon>AssignAdvisor.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\EditAdvisor.cs">
       <SubType>Form</SubType>
@@ -158,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddStudent.resx">
       <DependentUpon>AddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AssignAdvisor.resx">
+      <DependentUpon>AssignAdvisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EditAdvisor.resx">
       <DependentUpon>EditAdvisor.cs</DependentUpon>

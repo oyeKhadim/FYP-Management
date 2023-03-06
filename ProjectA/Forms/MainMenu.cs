@@ -149,5 +149,15 @@ namespace ProjectA.Forms
         {
             openCildForm(new Forms.ManageEvaluations(), sender);
         }
+
+        private void buttonAssignAdvisor_Click(object sender, EventArgs e)
+        {
+            openCildForm(new Forms.AssignAdvisor(), sender);
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

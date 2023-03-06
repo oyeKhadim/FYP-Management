@@ -39,44 +39,17 @@ namespace ProjectA.Forms
         }
         private void loadData()
         {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName,LastName,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
-                dgv.Columns["ID"].Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
+            DataTable dt= Advisor.load();
+            dgv.DataSource = dt;
+            dgv.Columns["ID"].Visible = false;
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            searchWithFirstName();
+           
         }
-        private void searchWithFirstName()
-        {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select A.ID,FirstName,LastName,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation Where FirstName like \'%" + (txtBoxSearch.Text + "%\'"), con);
-                //cmd.Parameters.AddWithValue("@FirstName", txtBoxSearch.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
-                dgv.Columns["ID"].Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
-        }
+    
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
@@ -127,7 +100,9 @@ namespace ProjectA.Forms
 
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            searchWithFirstName();
+            DataTable dt = Advisor.searchWithName(txtBoxSearch.Text);
+            dgv.DataSource = dt;
+            dgv.Columns["ID"].Visible = false;
         }
 
         private void btnReload_Click(object sender, EventArgs e)

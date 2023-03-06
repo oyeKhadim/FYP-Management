@@ -43,6 +43,7 @@
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.buttonManageEvaluations = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.buttonAssignAdvisor = new System.Windows.Forms.Button();
             this.panelTopBar.SuspendLayout();
             this.paneltopLeft.SuspendLayout();
             this.panelSideBar.SuspendLayout();
@@ -113,6 +114,7 @@
             // panelSideBar
             // 
             this.panelSideBar.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.panelSideBar.Controls.Add(this.buttonAssignAdvisor);
             this.panelSideBar.Controls.Add(this.buttonManageEvaluations);
             this.panelSideBar.Controls.Add(this.buttonManageGroups);
             this.panelSideBar.Controls.Add(this.buttonManageProjects);
@@ -251,6 +253,23 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // buttonAssignAdvisor
+            // 
+            this.buttonAssignAdvisor.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.buttonAssignAdvisor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonAssignAdvisor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonAssignAdvisor.FlatAppearance.BorderSize = 0;
+            this.buttonAssignAdvisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAssignAdvisor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAssignAdvisor.ForeColor = System.Drawing.Color.White;
+            this.buttonAssignAdvisor.Location = new System.Drawing.Point(0, 236);
+            this.buttonAssignAdvisor.Name = "buttonAssignAdvisor";
+            this.buttonAssignAdvisor.Size = new System.Drawing.Size(186, 39);
+            this.buttonAssignAdvisor.TabIndex = 7;
+            this.buttonAssignAdvisor.Text = "Assign Advisor";
+            this.buttonAssignAdvisor.UseVisualStyleBackColor = false;
+            this.buttonAssignAdvisor.Click += new System.EventHandler(this.buttonAssignAdvisor_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,6 +282,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainMenu";
+            this.Load += new System.EventHandler(this.MainMenu_Load);
             this.panelTopBar.ResumeLayout(false);
             this.panelTopBar.PerformLayout();
             this.paneltopLeft.ResumeLayout(false);
@@ -290,5 +310,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.Button buttonManageEvaluations;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button buttonAssignAdvisor;
     }
 }
