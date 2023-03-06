@@ -132,6 +132,8 @@ namespace ProjectA.Forms
                 cmd = new SqlCommand("Select value from Lookup where category=@category", con);
                 cmd.Parameters.AddWithValue("@category", "ADVISOR_ROLE");
                 SqlDataReader DR = cmd.ExecuteReader();
+                comboBoxAdvisorRole.Items.Clear();
+                advisorRoles.Clear();
                 while (DR.Read())
                 {
                     comboBoxAdvisorRole.Items.Add(DR[0]);
