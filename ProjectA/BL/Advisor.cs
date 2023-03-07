@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace ProjectA.BL
 {
@@ -58,6 +59,42 @@ namespace ProjectA.BL
                 MessageBox.Show("Error : " + ex.Message);
             }
             return null;
+        }
+
+        internal static void addAdvisor(Advisor a)
+        {
+            var con = Configuration.getInstance().getConnection();
+            SqlCommand cmd;
+            cmd = new SqlCommand("Insert into Advisor values (@id, @designation,@salary)", con);
+            cmd.Parameters.AddWithValue("@id", a.Id);
+            if (a.Salary == -1)
+            {
+                cmd.Parameters.AddWithValue("@salary", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@salary", a.Salary);
+            }
+            cmd.Parameters.AddWithValue("@designation", a.Designation);
+            cmd.ExecuteNonQuery();
+        }
+
+        internal static void updateAdvisor(Advisor a)
+        {
+            var con = Configuration.getInstance().getConnection();
+            SqlCommand cmd;
+            cmd = new SqlCommand("Update  Advisor SET  designation=@designation,salary=@salary where id=@id", con);
+            cmd.Parameters.AddWithValue("@id", a.Id);
+            if (a.Salary == -1)
+            {
+                cmd.Parameters.AddWithValue("@salary", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@salary", a.Salary);
+            }
+            cmd.Parameters.AddWithValue("@designation", a.Designation);
+            cmd.ExecuteNonQuery();
         }
     }
 }

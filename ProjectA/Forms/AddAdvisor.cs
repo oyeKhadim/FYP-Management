@@ -79,10 +79,7 @@ namespace ProjectA.Forms
                         if (gender != "NULL")
                         {
                             //Getting Gender in int from lookup table
-                            cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                            cmd.Parameters.AddWithValue("@value", gender);
-                            cmd.Parameters.AddWithValue("@category", "Gender");
-                            a.Gender = (Int32)cmd.ExecuteScalar();
+                            a.Gender = LookupClass.findId(gender, "Gender");
                         }
                         else
                         {
@@ -95,15 +92,12 @@ namespace ProjectA.Forms
 
                     }
                     string designation = "";
-                    //Checking whether gender is valid or not
+                    //Checking whether designation is valid or not
                     try
                     {
                         designation = comboBoxDesignation.SelectedItem.ToString();
-                        //Getting Gender in int from lookup table
-                        cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                        cmd.Parameters.AddWithValue("@value", designation);
-                        cmd.Parameters.AddWithValue("@category", "designation");
-                        a.Designation = (Int32)cmd.ExecuteScalar();
+                        //Getting designation in int from lookup table
+                        a.Designation = LookupClass.findId(designation, "Designation");
 
                     }
                     catch
@@ -119,60 +113,12 @@ namespace ProjectA.Forms
                     {
                         a.Salary = int.Parse(textBoxSalary.Text);
                     }
-                    //Adding data in person table
-                    cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
-                    cmd.Parameters.AddWithValue("@firstName", a.FirstName);
-                    //inserting null values in database if user has not provided full informations
-                    if (a.LastName == "")
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", a.LastName);
-                    }
-                    if (a.Contact == "")
-                    {
-                        cmd.Parameters.AddWithValue("@contact", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@contact", a.Contact);
-                    }
-                    cmd.Parameters.AddWithValue("@email", a.Email);
-                    if (a.DateOfBirth != null)
-                    {
-                        cmd.Parameters.AddWithValue("@dob", a.DateOfBirth);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@dob", DBNull.Value);
-
-                    }
-                    if (a.Gender == -1)
-                    {
-                        cmd.Parameters.AddWithValue("@gender", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@gender", a.Gender);
-                    }
-                    cmd.ExecuteNonQuery();
+                    //Adding data in person table and
                     //getting id of person which is auto genrated on above entry 
-                    a.Id = Person.retrieveId();
+                    a.Id = Person.addPerson(a);
                     //Inserting data in student table
-                    cmd = new SqlCommand("Insert into Advisor values (@id, @designation,@salary)", con);
-                    cmd.Parameters.AddWithValue("@id", a.Id);
-                    if (a.Salary == -1)
-                    {
-                        cmd.Parameters.AddWithValue("@salary", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@salary", a.Salary);
-                    }
-                    cmd.Parameters.AddWithValue("@designation", a.Designation);
-                    cmd.ExecuteNonQuery();
+                    Advisor.addAdvisor(a);
+                 
                     MessageBox.Show("Added");
                     this.Close();
                 }
@@ -213,6 +159,11 @@ namespace ProjectA.Forms
         private void txtBoxContact_Leave(object sender, EventArgs e)
         {
             Validations.validateIntTextBox(txtBoxContact, errorProvider);
+
+        }
+
+        private void AddAdvisor_Load(object sender, EventArgs e)
+        {
 
         }
     }

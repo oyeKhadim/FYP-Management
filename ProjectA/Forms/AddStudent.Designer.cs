@@ -269,6 +269,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddStudent";
+            this.Load += new System.EventHandler(this.AddStudent_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddStudent_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

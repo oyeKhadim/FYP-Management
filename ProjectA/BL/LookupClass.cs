@@ -18,5 +18,12 @@ namespace ProjectA.BL
             cmd.Parameters.AddWithValue("@category", category);
             return (Int32)cmd.ExecuteScalar();
         }
+        public static string getValue(int id)
+        {
+            SqlConnection con = Configuration.getInstance().getConnection();
+            SqlCommand cmd = new SqlCommand("Select value from Lookup Where id = @id", con);
+            cmd.Parameters.AddWithValue("@id", id);
+            return (string)cmd.ExecuteScalar();
+        }
     }
 }

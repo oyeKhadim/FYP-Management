@@ -22,7 +22,7 @@ namespace ProjectA.Forms
             InitializeComponent();
             this.s = student;
             con = Configuration.getInstance().getConnection();
-        
+
         }
 
         private void loadPreviousData()
@@ -49,7 +49,7 @@ namespace ProjectA.Forms
             {
                 dateTimePickerDoB.Value = Convert.ToDateTime(s.DateOfBirth);
             }
-          
+
         }
         private void EditStudent_MouseDown(object sender, MouseEventArgs e)
         {
@@ -65,7 +65,7 @@ namespace ProjectA.Forms
         {
             loadPreviousData();
         }
-     
+
 
         private void checkBoxisDoBApplicable_CheckedChanged(object sender, EventArgs e)
         {
@@ -113,10 +113,7 @@ namespace ProjectA.Forms
                         if (gender != "NULL")
                         {
                             //Getting Gender in int from lookup table
-                            cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                            cmd.Parameters.AddWithValue("@value", gender);
-                            cmd.Parameters.AddWithValue("@category", "Gender");
-                            s.Gender = (Int32)cmd.ExecuteScalar();
+                            s.Gender = LookupClass.findId(gender, "Gender");
                         }
                         else
                         {
@@ -128,52 +125,13 @@ namespace ProjectA.Forms
                         throw new Exception("Provide Correct Gender");
                     }
 
-                    //Adding data in person table
-                    cmd = new SqlCommand("Update Person SET firstName=@firstName, lastName=@lastName, contact=@contact,email=@email,dateofbirth=@dob,gender=@gender where id=@id", con);
-                    cmd.Parameters.AddWithValue("@firstName", s.FirstName);
-                    cmd.Parameters.AddWithValue("@id", s.Id);
-                    //inserting null values in database if user has not provided full informations
-                    if (s.LastName == "")
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", s.LastName);
-                    }
-                    if (s.Contact == "")
-                    {
-                        cmd.Parameters.AddWithValue("@contact", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@contact", s.Contact);
-                    }
-                    cmd.Parameters.AddWithValue("@email", s.Email);
-                    if (s.DateOfBirth != null)
-                    {
-                        cmd.Parameters.AddWithValue("@dob", s.DateOfBirth);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@dob", DBNull.Value);
+                    //Updating data in person table
+                    Person.updatePerson(s);
 
-                    }
-                    if (s.Gender == -1)
-                    {
-                        cmd.Parameters.AddWithValue("@gender", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@gender", s.Gender);
-                    }
-                    cmd.ExecuteNonQuery();
 
-                    //Inserting data in student table
-                    cmd = new SqlCommand("Update  Student SET  registrationNo=@registrationNo where id=@id", con);
-                    cmd.Parameters.AddWithValue("@id", s.Id);
-                    cmd.Parameters.AddWithValue("@registrationNo", s.RegistrationNo);
-                    cmd.ExecuteNonQuery();
+                    //updating data in student table
+                    Student.updateStudent(s.Id, s.RegistrationNo);
+
                     MessageBox.Show("Updated");
                     this.Close();
                 }

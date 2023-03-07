@@ -67,10 +67,7 @@ namespace ProjectA.Forms
                         if (gender != "NULL")
                         {
                             //Getting Gender in int from lookup table
-                            cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                            cmd.Parameters.AddWithValue("@value", gender);
-                            cmd.Parameters.AddWithValue("@category", "Gender");
-                            a.Gender = (Int32)cmd.ExecuteScalar();
+                            a.Gender = LookupClass.findId(gender, "Gender");
                         }
                         else
                         {
@@ -88,10 +85,7 @@ namespace ProjectA.Forms
                     {
                         designation = comboBoxDesignation.SelectedItem.ToString();
                         //Getting designation in int from lookup table
-                        cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                        cmd.Parameters.AddWithValue("@value", designation);
-                        cmd.Parameters.AddWithValue("@category", "designation");
-                        a.Designation = (Int32)cmd.ExecuteScalar();
+                        a.Designation = LookupClass.findId(designation, "Designation");
 
                     }
                     catch
@@ -108,60 +102,11 @@ namespace ProjectA.Forms
                         a.Salary = int.Parse(textBoxSalary.Text);
                     }
                     //updating data in person table
-                    cmd = new SqlCommand("Update  Person Set firstName=@firstName, lastName=@lastName, contact=@contact,email=@email,dateofbirth=@dob,gender=@gender where id=@id", con);
-                    cmd.Parameters.AddWithValue("@firstName", a.FirstName);
-                    cmd.Parameters.AddWithValue("@id", a.Id);
+                    Person.updatePerson(a);
 
-                    //inserting null values in database if user has not provided full informations
-                    if (a.LastName == "")
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", a.LastName);
-                    }
-                    if (a.Contact == "")
-                    {
-                        cmd.Parameters.AddWithValue("@contact", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@contact", a.Contact);
-                    }
-                    cmd.Parameters.AddWithValue("@email", a.Email);
-                    if (a.DateOfBirth != null)
-                    {
-                        cmd.Parameters.AddWithValue("@dob", a.DateOfBirth);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@dob", DBNull.Value);
-
-                    }
-                    if (a.Gender == -1)
-                    {
-                        cmd.Parameters.AddWithValue("@gender", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@gender", a.Gender);
-                    }
-                    cmd.ExecuteNonQuery();
+                    //updating data in Advisor table
+                    Advisor.updateAdvisor(a);
                  
-                    //Inserting data in student table
-                    cmd = new SqlCommand("Update  Advisor SET  designation=@designation,salary=@salary where id=@id", con);
-                    cmd.Parameters.AddWithValue("@id", a.Id);
-                    if (a.Salary == -1)
-                    {
-                        cmd.Parameters.AddWithValue("@salary", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@salary", a.Salary);
-                    }
-                    cmd.Parameters.AddWithValue("@designation", a.Designation);
-                    cmd.ExecuteNonQuery();
                     MessageBox.Show("Updated");
                     this.Close();
                 }
@@ -191,10 +136,7 @@ namespace ProjectA.Forms
             textBoxEmail.Text = a.Email;
             txtBoxContact.Text = a.Contact;
             //getting designation from lookup table
-            SqlCommand cmd = new SqlCommand("Select value from Lookup Where id = @id and Category = @category", con);
-            cmd.Parameters.AddWithValue("@id", a.Designation);
-            cmd.Parameters.AddWithValue("@category", "designation");
-            comboBoxDesignation.SelectedItem = cmd.ExecuteScalar();
+            comboBoxDesignation.SelectedItem = LookupClass.getValue(a.Designation);
             if (a.Gender == -1)
             {
                 comboBoxGender.SelectedIndex = 2;

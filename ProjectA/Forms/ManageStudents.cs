@@ -26,20 +26,9 @@ namespace ProjectA.Forms
         }
         private void loadData()
         {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Left Join Lookup L on L.Id=Gender", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
-                dgv.Columns["ID"].Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
+            DataTable dt = Student.loadStudents();
+            dgv.DataSource = dt;
+            dgv.Columns["ID"].Visible = false;
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -64,11 +53,8 @@ namespace ProjectA.Forms
                 if (gender != "")
                 {
                     //Getting Gender in int from lookup table
-                    SqlConnection con = Configuration.getInstance().getConnection();
-                    SqlCommand cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                    cmd.Parameters.AddWithValue("@value", gender);
-                    cmd.Parameters.AddWithValue("@category", "Gender");
-                    student.Gender = (Int32)cmd.ExecuteScalar();
+                    student.Gender = LookupClass.findId(gender, "Gender");
+
                 }
                 else
                 {
@@ -86,30 +72,18 @@ namespace ProjectA.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            searchWithRegNo();
+            DataTable dt = Student.searchInStudents(txtBoxSearch.Text);
+            dgv.DataSource = dt;
+            dgv.Columns["ID"].Visible = false;
         }
-        private void searchWithRegNo()
-        {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName,RegistrationNo,Contact,Email,DateOfBirth,l.value Gender from Student S Join Person P on S.id=P.id Left Join Lookup L on L.Id=Gender where RegistrationNo LIKE  \'%" + txtBoxSearch.Text + "%\'", con);
-                cmd.Parameters.AddWithValue("@RegistrationNo", txtBoxSearch.Text);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgv.DataSource = dt;
-                dgv.Columns["ID"].Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
-        }
+
 
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)
         {
-            searchWithRegNo();
+            DataTable dt = Student.searchInStudents(txtBoxSearch.Text);
+            dgv.DataSource = dt;
+            dgv.Columns["ID"].Visible = false;
+
         }
 
         private void btnReload_Click(object sender, EventArgs e)

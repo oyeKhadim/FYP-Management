@@ -78,10 +78,7 @@ namespace ProjectA.Forms
                         if (gender != "NULL")
                         {
                             //Getting Gender in int from lookup table
-                            cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                            cmd.Parameters.AddWithValue("@value", gender);
-                            cmd.Parameters.AddWithValue("@category", "Gender");
-                            s.Gender = (Int32)cmd.ExecuteScalar();
+                            s.Gender = LookupClass.findId(gender, "Gender");
                         }
                         else
                         {
@@ -94,54 +91,20 @@ namespace ProjectA.Forms
 
                     }
 
-                    //Adding data in person table
-                    cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
-                    cmd.Parameters.AddWithValue("@firstName", s.FirstName);
-                    //inserting null values in database if user has not provided full informations
-                    if (s.LastName == "")
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@lastName", s.LastName);
-                    }
-                    if (s.Contact == "")
-                    {
-                        cmd.Parameters.AddWithValue("@contact", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@contact", s.Contact);
-                    }
-                    cmd.Parameters.AddWithValue("@email", s.Email);
-                    if (s.DateOfBirth != null)
-                    {
-                        cmd.Parameters.AddWithValue("@dob", s.DateOfBirth);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@dob", DBNull.Value);
-
-                    }
-                    if (s.Gender == -1)
-                    {
-                        cmd.Parameters.AddWithValue("@gender", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@gender", s.Gender);
-                    }
-                    cmd.ExecuteNonQuery();
+                    //Adding data in person table and
                     //getting id of person which is auto genrated on above entry 
-                    s.Id =Person.retrieveId();
+                    s.Id = Person.addPerson(s);
                     //Inserting data in student table
-                    cmd = new SqlCommand("Insert into Student values (@id, @registrationNo)", con);
-                    cmd.Parameters.AddWithValue("@id", s.Id);
-                    cmd.Parameters.AddWithValue("@registrationNo", s.RegistrationNo);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Added");
-                    this.Close();
+                    if (Student.AddStudent(s.Id, s.RegistrationNo))
+                    {
+
+                        MessageBox.Show("Added");
+                        this.Close();
+                    }
+                    else
+                    {
+                        throw new Exception("Cannot Add Student");
+                    }
                 }
                 else
                 {
@@ -153,7 +116,7 @@ namespace ProjectA.Forms
                 MessageBox.Show(ex.Message);
             }
         }
-    
+
 
         private void dateTimePickerDoB_ValueChanged(object sender, EventArgs e)
         {
@@ -203,6 +166,11 @@ namespace ProjectA.Forms
         private void textBoxContact_Leave(object sender, EventArgs e)
         {
             Validations.validateIntTextBox(textBoxContact, errorProvider);
+
+        }
+
+        private void AddStudent_Load(object sender, EventArgs e)
+        {
 
         }
     }

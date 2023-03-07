@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,98 @@ namespace ProjectA.BL
             SqlCommand cmd = new SqlCommand("Select MAX(id) from Person", con);
             return (Int32)cmd.ExecuteScalar();
         }
+        public static int addPerson(Person person)
+        {
+            //Adding data in person table
+            SqlCommand cmd;
+            SqlConnection con = Configuration.getInstance().getConnection();
+            cmd = new SqlCommand("Insert into Person values (@firstName, @lastName, @contact,@email,@dob,@gender)", con);
+            cmd.Parameters.AddWithValue("@firstName", person.FirstName);
+            //inserting null values in database if user has not provided full informations
+            if (person.LastName == "")
+            {
+                cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@lastName", person.LastName);
+            }
+            if (person.Contact == "")
+            {
+                cmd.Parameters.AddWithValue("@contact", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@contact", person.Contact);
+            }
+            cmd.Parameters.AddWithValue("@email", person.Email);
+            if (person.DateOfBirth != null) 
+            {
+                cmd.Parameters.AddWithValue("@dob", person.DateOfBirth);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@dob", DBNull.Value);
+
+            }
+            if (person.Gender == -1)
+            {
+                cmd.Parameters.AddWithValue("@gender", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@gender", person.Gender);
+            }
+            cmd.ExecuteNonQuery();
+            //getting id of person which is auto genrated on above entry 
+            return Person.retrieveId();
+        }
+
+        public static void updatePerson(Person person)
+        {
+            SqlCommand cmd;
+            SqlConnection con = Configuration.getInstance().getConnection();
+            cmd = new SqlCommand("Update Person SET firstName=@firstName, lastName=@lastName, contact=@contact,email=@email,dateofbirth=@dob,gender=@gender where id=@id", con);
+            cmd.Parameters.AddWithValue("@firstName", person.FirstName);
+            cmd.Parameters.AddWithValue("@id", person.Id);
+            //inserting null values in database if user has not provided full informations
+            if (person.LastName == "")
+            {
+                cmd.Parameters.AddWithValue("@lastName", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@lastName", person.LastName);
+            }
+            if (person.Contact == "")
+            {
+                cmd.Parameters.AddWithValue("@contact", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@contact", person.Contact);
+            }
+            cmd.Parameters.AddWithValue("@email", person.Email);
+            if (person.DateOfBirth != null)
+            {
+                cmd.Parameters.AddWithValue("@dob", person.DateOfBirth);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@dob", DBNull.Value);
+
+            }
+            if (person.Gender == -1)
+            {
+                cmd.Parameters.AddWithValue("@gender", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@gender", person.Gender);
+            }
+            cmd.ExecuteNonQuery();
+        }
+
         public int Id { get => id; set => id = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }

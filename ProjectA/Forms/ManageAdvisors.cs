@@ -73,21 +73,13 @@ namespace ProjectA.Forms
                 if (gender != "")
                 {
                     //Getting Gender in int from lookup table
-                    con = Configuration.getInstance().getConnection();
-                    cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                    cmd.Parameters.AddWithValue("@value", gender);
-                    cmd.Parameters.AddWithValue("@category", "Gender");
-                    advisor.Gender = (Int32)cmd.ExecuteScalar();
+                    advisor.Gender = LookupClass.findId(gender, "Gender");
                 }
                 else
                 {
                     advisor.Gender = -1;
                 }
-                con = Configuration.getInstance().getConnection();
-                cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                cmd.Parameters.AddWithValue("@value", designation);
-                cmd.Parameters.AddWithValue("@category", "designation");
-                advisor.Designation = (Int32)cmd.ExecuteScalar();
+                advisor.Designation = LookupClass.findId(designation, "Designation");
             }
             catch (Exception ex)
             {
