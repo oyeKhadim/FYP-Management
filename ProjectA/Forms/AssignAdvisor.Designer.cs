@@ -231,7 +231,7 @@
             this.ClientSize = new System.Drawing.Size(786, 431);
             this.Controls.Add(this.tableLayoutPanel);
             this.Name = "AssignAdvisor";
-            this.Text = "AssignAdvisor";
+            this.Text = "Assign Advisor";
             this.Load += new System.EventHandler(this.AssignAdvisor_Load);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();

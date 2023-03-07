@@ -32,8 +32,8 @@ namespace ProjectA.BL
             try
             {
                 var con = Configuration.getInstance().getConnection();
-
-                SqlCommand cmd = new SqlCommand("Select * from Project where title LIKE \'%" + search + "%\'", con);
+                SqlCommand cmd = new SqlCommand("Select * from Project where title LIKE '%'+@search+'%'", con);
+                cmd.Parameters.AddWithValue("@search", search);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -44,6 +44,24 @@ namespace ProjectA.BL
                 MessageBox.Show("Error : " + ex.Message);
             }
             return null;
+        }
+
+        internal static DataTable loadProjects()
+        {
+            try
+            {
+                var con = Configuration.getInstance().getConnection();
+                SqlCommand cmd = new SqlCommand("Select * from Project", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message);
+                return null;
+            }
         }
     }
 }

@@ -42,19 +42,9 @@ namespace ProjectA.Forms
 
         private void loadData()
         {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select * from [group]", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvGroups.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
+
+            DataTable dt = Group.loadGroups();
+            dgvGroups.DataSource = dt;
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -68,7 +58,7 @@ namespace ProjectA.Forms
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Please Select A Group First");
             }
         }
 
@@ -77,59 +67,72 @@ namespace ProjectA.Forms
             try
             {
                 string groupId = dgvGroups.SelectedRows[0].Cells[0].Value.ToString();
-                int status = LookupClass.findId("active", "status");
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("select FirstName,LastName,RegistrationNo from GroupStudent Join Student s on s.Id=StudentId join person P on s.Id=p.id  where groupid =@groupId and status=@status", con);
-                cmd.Parameters.AddWithValue("@groupId", groupId);
-                cmd.Parameters.AddWithValue("@status", status);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                DataTable dt = Group.loadStudentsOfGroup(groupId);
                 dgvStudents.DataSource = dt;
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+
+
+            }
         }
 
         private void btnAssignProject_Click(object sender, EventArgs e)
         {
-            int groupId = int.Parse(dgvGroups.SelectedRows[0].Cells[0].Value.ToString());
-            var con = Configuration.getInstance().getConnection();
-            SqlCommand cmd = new SqlCommand("select count(ProjectId) from GroupProject where GroupId=@groupId", con);
-            cmd.Parameters.AddWithValue("@groupId", groupId);
-            int count = (Int32)cmd.ExecuteScalar();
-            if (count == 0)
+            try
             {
-                Form form = new AssignProject(groupId);
-                form.ShowDialog();
-                loadData();
+                int groupId = int.Parse(dgvGroups.SelectedRows[0].Cells[0].Value.ToString());
+                var con = Configuration.getInstance().getConnection();
+                SqlCommand cmd = new SqlCommand("select count(ProjectId) from GroupProject where GroupId=@groupId", con);
+                cmd.Parameters.AddWithValue("@groupId", groupId);
+                int count = (Int32)cmd.ExecuteScalar();
+                if (count == 0)
+                {
+                    Form form = new AssignProject(groupId);
+                    form.ShowDialog();
+                    loadData();
 
+                }
+                else
+                {
+                    MessageBox.Show("Project is Already Assigned to this group");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Project is Already Assigned to this group");
+                MessageBox.Show("Please Select A Group First");
+
             }
         }
 
         private void buttonEvaluate_Click(object sender, EventArgs e)
         {
-            int groupId = int.Parse(dgvGroups.SelectedRows[0].Cells[0].Value.ToString());
-            var con = Configuration.getInstance().getConnection();
-            SqlCommand cmd = new SqlCommand(" select count(EvaluationId) from GroupEvaluation where GroupId=@groupId", con);
-            cmd.Parameters.AddWithValue("@groupId", groupId);
-            int countEvaluationTaken = (Int32)cmd.ExecuteScalar();
-             cmd = new SqlCommand("   select count(Id) from Evaluation", con);
-            cmd.Parameters.AddWithValue("@groupId", groupId);
-            int totalEvaluation = (Int32)cmd.ExecuteScalar();
-            if(totalEvaluation<=countEvaluationTaken)
+            try
             {
-                MessageBox.Show("All Available Evaluations has been done with this Group" +
-                    "\nPlease Add more Evaluations to Evaluate this group");
+                int groupId = int.Parse(dgvGroups.SelectedRows[0].Cells[0].Value.ToString());
+                var con = Configuration.getInstance().getConnection();
+                SqlCommand cmd = new SqlCommand(" select count(EvaluationId) from GroupEvaluation where GroupId=@groupId", con);
+                cmd.Parameters.AddWithValue("@groupId", groupId);
+                int countEvaluationTaken = (Int32)cmd.ExecuteScalar();
+                cmd = new SqlCommand("   select count(Id) from Evaluation", con);
+                cmd.Parameters.AddWithValue("@groupId", groupId);
+                int totalEvaluation = (Int32)cmd.ExecuteScalar();
+                if (totalEvaluation <= countEvaluationTaken)
+                {
+                    MessageBox.Show("All Available Evaluations has been done with this Group" +
+                        "\nPlease Add more Evaluations to Evaluate this group");
+                }
+                else
+                {
+                    Form form = new EvaluateGroup(groupId);
+                    form.ShowDialog();
+                    loadData();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Form form = new EvaluateGroup(groupId);
-                form.ShowDialog();
-                loadData();
+                MessageBox.Show("Please Select A Group First");
             }
         }
     }

@@ -39,7 +39,7 @@ namespace ProjectA.Forms
         }
         private void loadData()
         {
-            DataTable dt= Advisor.load();
+            DataTable dt = Advisor.load();
             dgv.DataSource = dt;
             dgv.Columns["ID"].Visible = false;
 
@@ -47,9 +47,9 @@ namespace ProjectA.Forms
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-           
+
         }
-    
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
 
@@ -80,14 +80,17 @@ namespace ProjectA.Forms
                     advisor.Gender = -1;
                 }
                 advisor.Designation = LookupClass.findId(designation, "Designation");
+                Form form = new EditAdvisor(advisor);
+                form.ShowDialog();
+                loadData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //   //MessageBox.Show(ex.Message);
+
+                MessageBox.Show("Please Select A valid Advisor to Edit");
+
             }
-            Form form = new EditAdvisor(advisor);
-            form.ShowDialog();
-            loadData();
         }
 
         private void txtBoxSearch_TextChanged(object sender, EventArgs e)

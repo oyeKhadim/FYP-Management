@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BL\Advisor.cs" />
     <Compile Include="BL\Evaluation.cs" />
+    <Compile Include="BL\Group.cs" />
     <Compile Include="BL\LookupClass.cs" />
     <Compile Include="BL\Person.cs" />
     <Compile Include="BL\Project.cs" />

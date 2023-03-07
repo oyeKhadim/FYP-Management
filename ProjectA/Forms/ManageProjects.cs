@@ -34,19 +34,9 @@ namespace ProjectA.Forms
         }
         private void loadData()
         {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select * from Project", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                fillDGV(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
+            
+            DataTable dt = Project.loadProjects();
+            fillDGV(dt);
         }
         private void fillDGV(DataTable dt)
         {
@@ -56,14 +46,23 @@ namespace ProjectA.Forms
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            Project project = new Project();
-            int col = 0;
-            project.Id = int.Parse(dgv.SelectedRows[0].Cells[col++].Value.ToString());
-            project.Description = dgv.SelectedRows[0].Cells[col++].Value.ToString();
-            project.Title = dgv.SelectedRows[0].Cells[col++].Value.ToString();
-            Form form = new EditProject(project);
-            form.ShowDialog();
-            loadData();
+            try
+            {
+
+
+                Project project = new Project();
+                int col = 0;
+                project.Id = int.Parse(dgv.SelectedRows[0].Cells[col++].Value.ToString());
+                project.Description = dgv.SelectedRows[0].Cells[col++].Value.ToString();
+                project.Title = dgv.SelectedRows[0].Cells[col++].Value.ToString();
+                Form form = new EditProject(project);
+                form.ShowDialog();
+                loadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please Select A valid Project to Edit");
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

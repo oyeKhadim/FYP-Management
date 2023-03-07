@@ -35,23 +35,13 @@ namespace ProjectA.Forms
         }
         private void loadData()
         {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select * from Evaluation", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                fillDGV(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
+            DataTable dt = Evaluation.loadEvaluations();
+            fillDGV(dt);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            try { 
             Evaluation ev = new Evaluation();
             int col = 0;
             ev.Id = int.Parse(dgv.SelectedRows[0].Cells[col++].Value.ToString());
@@ -61,6 +51,11 @@ namespace ProjectA.Forms
             Form form = new EditEvaluation(ev);
             form.ShowDialog();
             loadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Please Select An Evaluation First");
+            }
         }
 
         private void btnReload_Click(object sender, EventArgs e)
@@ -76,20 +71,9 @@ namespace ProjectA.Forms
 
         private void searchWithName()
         {
-            try
-            {
-                var con = Configuration.getInstance().getConnection();
-
-                SqlCommand cmd = new SqlCommand("Select * from Evaluation where name LIKE \'%" + txtBoxSearch.Text + "%\'", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                fillDGV(dt);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex.Message);
-            }
+            
+            DataTable dt = Evaluation.searchEvaluations(txtBoxSearch.Text);
+            fillDGV(dt);
         }
         private void fillDGV(DataTable dt)
         {

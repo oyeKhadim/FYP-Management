@@ -60,14 +60,15 @@ namespace ProjectA.Forms
                 {
                     student.Gender = -1;
                 }
+                Form form = new EditStudent(student);
+                form.ShowDialog();
+                loadData();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Please Select A valid Student");
             }
-            Form form = new EditStudent(student);
-            form.ShowDialog();
-            loadData();
+          
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

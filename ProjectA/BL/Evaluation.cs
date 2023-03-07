@@ -1,8 +1,12 @@
-﻿using System;
+﻿using ProjectA.Extras;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjectA.BL
 {
@@ -26,5 +30,44 @@ namespace ProjectA.BL
         public string Name { get => name; set => name = value; }
         public int TotalMarks { get => totalMarks; set => totalMarks = value; }
         public int TotalWeightage { get => totalWeightage; set => totalWeightage = value; }
+
+        internal static DataTable loadEvaluations()
+        {
+            try
+            {
+                var con = Configuration.getInstance().getConnection();
+                SqlCommand cmd = new SqlCommand("Select * from Evaluation", con);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message);
+                return null;
+            }
+        }
+
+        internal static DataTable searchEvaluations(string text)
+        {
+            try
+            {
+                var con = Configuration.getInstance().getConnection();
+
+                SqlCommand cmd = new SqlCommand("Select * from Evaluation where name LIKE '%'+@text+'%'", con);
+                cmd.Parameters.AddWithValue("@text", text);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error : " + ex.Message);
+                return null;
+            }
+        }
     }
 }
