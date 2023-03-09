@@ -104,7 +104,7 @@ namespace ProjectA.Forms
                 Validations.validateEmailTextBox(textBoxEmail, errorProvider);
                 if (isAllInfoValid)
                 {
-                    SqlCommand cmd;
+                  
                     string gender = "";
                     //Checking whether gender is valid or not
                     try

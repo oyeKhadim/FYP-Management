@@ -69,7 +69,7 @@ namespace ProjectA.Forms
                 //if all fields all fill correctly store in database
                 if (isAllInfoValid)
                 {
-                    SqlCommand cmd;
+                    
                     string gender = "";
                     //Checking whether gender is valid or not
                     try

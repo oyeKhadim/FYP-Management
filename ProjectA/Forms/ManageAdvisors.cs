@@ -68,8 +68,7 @@ namespace ProjectA.Forms
                 advisor.DateOfBirth = dgv.SelectedRows[0].Cells[col++].Value.ToString();
                 string gender = dgv.SelectedRows[0].Cells[col++].Value.ToString();
                 if (salary == string.Empty) { advisor.Salary = -1; } else { advisor.Salary = int.Parse(salary); }
-                SqlConnection con;
-                SqlCommand cmd;
+
                 if (gender != "")
                 {
                     //Getting Gender in int from lookup table

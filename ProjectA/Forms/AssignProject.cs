@@ -15,12 +15,14 @@ namespace ProjectA.Forms
 {
     public partial class AssignProject : Form
     {
-        private int groupId;
+
+        private GroupProject groupProject;
         SqlConnection con;
         public AssignProject(int groupId)
         {
             InitializeComponent();
-            this.groupId = groupId;
+             groupProject = new GroupProject();
+            groupProject.GroupId = groupId;
             con=Configuration.getInstance().getConnection();
         }
 
@@ -38,11 +40,7 @@ namespace ProjectA.Forms
         {
             try
             {
-                SqlCommand cmd;
-                cmd = new SqlCommand("Select * from Project", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                DataTable dt = Project.loadProjects();
                 fillDGV(dt);
             }
             catch (Exception ex)
@@ -95,16 +93,11 @@ namespace ProjectA.Forms
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            int projectId = int.Parse(dgv.SelectedRows[0].Cells[0].Value.ToString());
-            DateTime date=DateTime.Now;
+            groupProject.ProjectId = int.Parse(dgv.SelectedRows[0].Cells[0].Value.ToString());
+            groupProject.AssignmentDate=DateTime.Now;
             try
             {
-                SqlCommand cmd;
-                cmd = new SqlCommand("Insert into GroupProject values ( @projectId,@groupId,@date)", con);
-                cmd.Parameters.AddWithValue("@projectId", projectId);
-                cmd.Parameters.AddWithValue("@groupId", groupId);
-                cmd.Parameters.AddWithValue("@date", date);
-                cmd.ExecuteNonQuery();
+                groupProject.assignProject();
                 MessageBox.Show("Project Assigned");
                 this.Close();
             }catch(Exception ex) { }

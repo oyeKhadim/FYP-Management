@@ -59,10 +59,9 @@ namespace ProjectA.Forms
                     evaluation.TotalMarks = int.Parse(textBoxTotalMarks.Text);
                     evaluation.TotalWeightage = int.Parse(textBoxWeightage.Text);
 
-                    SqlCommand cmd;
                     //checking weightage of evaluations
-                    cmd = new SqlCommand("select sum(totalweightage) from Evaluation", con);
-                    int sumOfWeightage = (Int32)cmd.ExecuteScalar();
+                    
+                    int sumOfWeightage = Evaluation.getTotalWeightage();
                     if (sumOfWeightage + int.Parse(textBoxWeightage.Text) > 100)
                     {
                         throw new Exception("Sum of TotalWeightage of all evaluations cannot exceed 100" +
@@ -70,13 +69,7 @@ namespace ProjectA.Forms
                     }
 
                     //Adding data in project table
-                    cmd = new SqlCommand("Insert into Evaluation values ( @name,@marks,@weightage)", con);
-                    cmd.Parameters.AddWithValue("@name", evaluation.Name);
-                    cmd.Parameters.AddWithValue("@marks", evaluation.TotalMarks);
-                    cmd.Parameters.AddWithValue("@weightage", evaluation.TotalWeightage);
-                    //inserting null values in database if user has not provided full informations
-
-                    cmd.ExecuteNonQuery();
+                    Evaluation.addEvaluation(evaluation);
                     MessageBox.Show("Added");
                     this.Close();
                 }
@@ -91,6 +84,9 @@ namespace ProjectA.Forms
             }
         }
 
+        private void AddEvaluation_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

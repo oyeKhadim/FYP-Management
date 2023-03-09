@@ -48,7 +48,7 @@
             this.textBoxTotalMarks.Location = new System.Drawing.Point(215, 76);
             this.textBoxTotalMarks.Name = "textBoxTotalMarks";
             this.textBoxTotalMarks.Size = new System.Drawing.Size(225, 26);
-            this.textBoxTotalMarks.TabIndex = 46;
+            this.textBoxTotalMarks.TabIndex = 1;
             // 
             // lblName
             // 
@@ -86,7 +86,7 @@
             this.textBoxWeightage.Location = new System.Drawing.Point(215, 110);
             this.textBoxWeightage.Name = "textBoxWeightage";
             this.textBoxWeightage.Size = new System.Drawing.Size(225, 26);
-            this.textBoxWeightage.TabIndex = 40;
+            this.textBoxWeightage.TabIndex = 2;
             // 
             // textBoxName
             // 
@@ -94,7 +94,7 @@
             this.textBoxName.Location = new System.Drawing.Point(215, 44);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(225, 26);
-            this.textBoxName.TabIndex = 39;
+            this.textBoxName.TabIndex = 0;
             // 
             // btnCancel
             // 
@@ -102,7 +102,7 @@
             this.btnCancel.Location = new System.Drawing.Point(317, 144);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(69, 28);
-            this.btnCancel.TabIndex = 41;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -113,7 +113,7 @@
             this.btnAdd.Location = new System.Drawing.Point(392, 144);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(49, 28);
-            this.btnAdd.TabIndex = 42;
+            this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -155,6 +155,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddEvaluation";
+            this.Load += new System.EventHandler(this.AddEvaluation_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AddEvaluation_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);

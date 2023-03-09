@@ -1,9 +1,12 @@
-﻿using System;
+﻿using ProjectA.Extras;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -158,6 +161,18 @@ namespace ProjectA.Forms
         private void MainMenu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonReports_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonReports_Click_1(object sender, EventArgs e)
+        {
+            var physicalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            //var physicalPath = "D:\\PDF\\";
+            PdfReport.printPdfReport(physicalPath);
         }
     }
 }

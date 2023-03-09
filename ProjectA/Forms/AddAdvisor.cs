@@ -17,7 +17,6 @@ namespace ProjectA.Forms
     {
 
         Advisor a;
-        SqlConnection con;
         public AddAdvisor()
         {
             InitializeComponent();
@@ -26,7 +25,6 @@ namespace ProjectA.Forms
         private void start()
         {
             a = new Advisor();
-            con = Configuration.getInstance().getConnection();
             a.DateOfBirth = dateTimePickerDoB.Value.ToString();
             comboBoxGender.SelectedIndex = 0;
             comboBoxDesignation.SelectedIndex = 0;
@@ -70,7 +68,7 @@ namespace ProjectA.Forms
                 //if all fields all fill correctly store in database
                 if (isAllInfoValid)
                 {
-                    SqlCommand cmd;
+               
                     string gender = "";
                     //Checking whether gender is valid or not
                     try

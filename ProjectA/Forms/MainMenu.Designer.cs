@@ -35,21 +35,22 @@
             this.paneltopLeft = new System.Windows.Forms.Panel();
             this.lblProjectName = new System.Windows.Forms.Label();
             this.panelSideBar = new System.Windows.Forms.Panel();
+            this.buttonReports = new System.Windows.Forms.Button();
+            this.buttonAssignAdvisor = new System.Windows.Forms.Button();
+            this.buttonManageEvaluations = new System.Windows.Forms.Button();
             this.buttonManageGroups = new System.Windows.Forms.Button();
             this.buttonManageProjects = new System.Windows.Forms.Button();
             this.buttonManageAdvisors = new System.Windows.Forms.Button();
             this.buttonManageStudents = new System.Windows.Forms.Button();
             this.panelChildForm = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonManageEvaluations = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonAssignAdvisor = new System.Windows.Forms.Button();
+            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.panelTopBar.SuspendLayout();
             this.paneltopLeft.SuspendLayout();
             this.panelSideBar.SuspendLayout();
             this.panelChildForm.SuspendLayout();
-            this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTopBar
@@ -114,6 +115,7 @@
             // panelSideBar
             // 
             this.panelSideBar.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.panelSideBar.Controls.Add(this.buttonReports);
             this.panelSideBar.Controls.Add(this.buttonAssignAdvisor);
             this.panelSideBar.Controls.Add(this.buttonManageEvaluations);
             this.panelSideBar.Controls.Add(this.buttonManageGroups);
@@ -130,6 +132,57 @@
             this.panelSideBar.Size = new System.Drawing.Size(186, 511);
             this.panelSideBar.TabIndex = 1;
             this.panelSideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSideBar_Paint);
+            // 
+            // buttonReports
+            // 
+            this.buttonReports.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.buttonReports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonReports.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonReports.FlatAppearance.BorderSize = 0;
+            this.buttonReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReports.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonReports.ForeColor = System.Drawing.Color.White;
+            this.buttonReports.Location = new System.Drawing.Point(0, 275);
+            this.buttonReports.Name = "buttonReports";
+            this.buttonReports.Size = new System.Drawing.Size(186, 39);
+            this.buttonReports.TabIndex = 8;
+            this.buttonReports.Text = "Reports";
+            this.buttonReports.UseVisualStyleBackColor = false;
+            this.buttonReports.Click += new System.EventHandler(this.buttonReports_Click_1);
+            // 
+            // buttonAssignAdvisor
+            // 
+            this.buttonAssignAdvisor.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.buttonAssignAdvisor.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonAssignAdvisor.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonAssignAdvisor.FlatAppearance.BorderSize = 0;
+            this.buttonAssignAdvisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAssignAdvisor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAssignAdvisor.ForeColor = System.Drawing.Color.White;
+            this.buttonAssignAdvisor.Location = new System.Drawing.Point(0, 236);
+            this.buttonAssignAdvisor.Name = "buttonAssignAdvisor";
+            this.buttonAssignAdvisor.Size = new System.Drawing.Size(186, 39);
+            this.buttonAssignAdvisor.TabIndex = 7;
+            this.buttonAssignAdvisor.Text = "Assign Advisor";
+            this.buttonAssignAdvisor.UseVisualStyleBackColor = false;
+            this.buttonAssignAdvisor.Click += new System.EventHandler(this.buttonAssignAdvisor_Click);
+            // 
+            // buttonManageEvaluations
+            // 
+            this.buttonManageEvaluations.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.buttonManageEvaluations.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonManageEvaluations.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonManageEvaluations.FlatAppearance.BorderSize = 0;
+            this.buttonManageEvaluations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonManageEvaluations.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonManageEvaluations.ForeColor = System.Drawing.Color.White;
+            this.buttonManageEvaluations.Location = new System.Drawing.Point(0, 197);
+            this.buttonManageEvaluations.Name = "buttonManageEvaluations";
+            this.buttonManageEvaluations.Size = new System.Drawing.Size(186, 39);
+            this.buttonManageEvaluations.TabIndex = 6;
+            this.buttonManageEvaluations.Text = "Manage Evaluations";
+            this.buttonManageEvaluations.UseVisualStyleBackColor = false;
+            this.buttonManageEvaluations.Click += new System.EventHandler(this.buttonManageEvaluations_Click);
             // 
             // buttonManageGroups
             // 
@@ -209,6 +262,16 @@
             this.panelChildForm.Size = new System.Drawing.Size(792, 465);
             this.panelChildForm.TabIndex = 2;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(197, 76);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(390, 300);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.ColumnCount = 2;
@@ -225,50 +288,6 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(984, 511);
             this.tableLayoutPanel.TabIndex = 3;
-            // 
-            // buttonManageEvaluations
-            // 
-            this.buttonManageEvaluations.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.buttonManageEvaluations.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonManageEvaluations.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonManageEvaluations.FlatAppearance.BorderSize = 0;
-            this.buttonManageEvaluations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonManageEvaluations.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonManageEvaluations.ForeColor = System.Drawing.Color.White;
-            this.buttonManageEvaluations.Location = new System.Drawing.Point(0, 197);
-            this.buttonManageEvaluations.Name = "buttonManageEvaluations";
-            this.buttonManageEvaluations.Size = new System.Drawing.Size(186, 39);
-            this.buttonManageEvaluations.TabIndex = 6;
-            this.buttonManageEvaluations.Text = "Manage Evaluations";
-            this.buttonManageEvaluations.UseVisualStyleBackColor = false;
-            this.buttonManageEvaluations.Click += new System.EventHandler(this.buttonManageEvaluations_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(197, 76);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(390, 300);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // buttonAssignAdvisor
-            // 
-            this.buttonAssignAdvisor.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.buttonAssignAdvisor.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonAssignAdvisor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.buttonAssignAdvisor.FlatAppearance.BorderSize = 0;
-            this.buttonAssignAdvisor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAssignAdvisor.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAssignAdvisor.ForeColor = System.Drawing.Color.White;
-            this.buttonAssignAdvisor.Location = new System.Drawing.Point(0, 236);
-            this.buttonAssignAdvisor.Name = "buttonAssignAdvisor";
-            this.buttonAssignAdvisor.Size = new System.Drawing.Size(186, 39);
-            this.buttonAssignAdvisor.TabIndex = 7;
-            this.buttonAssignAdvisor.Text = "Assign Advisor";
-            this.buttonAssignAdvisor.UseVisualStyleBackColor = false;
-            this.buttonAssignAdvisor.Click += new System.EventHandler(this.buttonAssignAdvisor_Click);
             // 
             // MainMenu
             // 
@@ -289,8 +308,8 @@
             this.paneltopLeft.PerformLayout();
             this.panelSideBar.ResumeLayout(false);
             this.panelChildForm.ResumeLayout(false);
-            this.tableLayoutPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -311,5 +330,6 @@
         private System.Windows.Forms.Button buttonManageEvaluations;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonAssignAdvisor;
+        private System.Windows.Forms.Button buttonReports;
     }
 }

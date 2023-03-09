@@ -102,10 +102,7 @@ namespace ProjectA.Forms
             try
             {
 
-                cmd = new SqlCommand("Select A.ID,FirstName+' '+LastName Name,l2.value Designation,Salary,Contact,Email,DateOfBirth,l.value Gender from Advisor A Join Person P on A.id=P.id Left Join Lookup L on L.Id=Gender Join Lookup L2 on L2.id=Designation", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                DataTable dt = Advisor.load();
                 dgvAdvisors.DataSource = dt;
                 dgvAdvisors.Columns["ID"].Visible = false;
             }
@@ -116,10 +113,7 @@ namespace ProjectA.Forms
             try
             {
 
-                cmd = new SqlCommand("Select * from Project", con);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
+                DataTable dt = Project.loadProjects();
                 fillDGV(dt);
             }
             catch (Exception ex)
@@ -128,17 +122,8 @@ namespace ProjectA.Forms
             }
             try
             {
-
-                cmd = new SqlCommand("Select value from Lookup where category=@category", con);
-                cmd.Parameters.AddWithValue("@category", "ADVISOR_ROLE");
-                SqlDataReader DR = cmd.ExecuteReader();
-                comboBoxAdvisorRole.Items.Clear();
-                advisorRoles.Clear();
-                while (DR.Read())
-                {
-                    comboBoxAdvisorRole.Items.Add(DR[0]);
-                    advisorRoles.Add(DR[0].ToString());
-                }
+                advisorRoles = LookupClass.getValuesOfCategory("ADVISOR_ROLE"); 
+                comboBoxAdvisorRole.DataSource=advisorRoles;
             }
             catch (Exception ex)
             {
@@ -225,8 +210,6 @@ namespace ProjectA.Forms
                 }
                 catch
                 {
-
-
                     errorProvider.SetError(comboBoxAdvisorRole, "Choose correct Role");
                     throw new Exception("Please Choose Correct Advisor Role");
                 }
@@ -234,22 +217,13 @@ namespace ProjectA.Forms
                 SqlCommand cmd;
                 SqlConnection con = Configuration.getInstance().getConnection();
                 //Getting role in int from lookup table
-                cmd = new SqlCommand("Select id from Lookup Where value = @value and Category = @category", con);
-                cmd.Parameters.AddWithValue("@value", aRole);
-                cmd.Parameters.AddWithValue("@category", "ADVISOR_ROLE");
-                projectAdvisor.AdvisorRole = (Int32)cmd.ExecuteScalar();
+                projectAdvisor.AdvisorRole = LookupClass.findId(aRole, "advisor_role");
                 projectAdvisor.AssignmentDate = DateTime.Now;
 
                 //Inserting data in  table
                 try
                 {
-                    cmd = new SqlCommand("Insert into ProjectAdvisor values (@advisroId,@projectId,@aRole,@date)", con);
-                    cmd.Parameters.AddWithValue("@advisroId", projectAdvisor.AdvisorId);
-                    cmd.Parameters.AddWithValue("@projectId", projectAdvisor.ProjectId);
-                    cmd.Parameters.AddWithValue("@aRole", projectAdvisor.AdvisorRole);
-                    cmd.Parameters.AddWithValue("@date", projectAdvisor.AssignmentDate);
-
-                    cmd.ExecuteNonQuery();
+                    ProjectAdvisor.addProjectAdvisor(projectAdvisor);
                 }
                 catch
                 {
