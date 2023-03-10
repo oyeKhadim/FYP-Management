@@ -70,6 +70,7 @@
     <Compile Include="Extras\Configuration.cs" />
     <Compile Include="Extras\Drag.cs" />
     <Compile Include="Extras\PdfReport.cs" />
+    <Compile Include="Extras\Report.cs" />
     <Compile Include="Extras\Validations.cs" />
     <Compile Include="Forms\AddAdvisor.cs">
       <SubType>Form</SubType>
@@ -179,6 +180,12 @@
     <Compile Include="Forms\ManageStudents.Designer.cs">
       <DependentUpon>ManageStudents.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Reports.Designer.cs">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\UpdateGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ManageStudents.resx">
       <DependentUpon>ManageStudents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UpdateGroup.resx">
       <DependentUpon>UpdateGroup.cs</DependentUpon>

@@ -32,3 +32,4 @@ D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Fo
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\bin\Debug\BouncyCastle.Crypto.dll
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\bin\Debug\itextsharp.dll
 D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\bin\Debug\itextsharp.xml
+D:\Semester 4\DBMS (Lab)\Midterm Project\ProjectA\ProjectA\obj\Debug\ProjectA.Forms.Reports.resources

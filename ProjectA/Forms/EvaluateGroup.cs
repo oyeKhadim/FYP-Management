@@ -106,6 +106,8 @@ namespace ProjectA.Forms
                     cmd.Parameters.AddWithValue("@date", DateTime.Now);
 
                     cmd.ExecuteNonQuery();
+                    MessageBox.Show("Marks Saved");
+                    this.Close();
                 }
                 else
                 {

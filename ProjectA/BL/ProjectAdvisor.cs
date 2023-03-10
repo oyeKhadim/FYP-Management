@@ -39,5 +39,16 @@ namespace ProjectA.BL
             cmd.Parameters.AddWithValue("@date", projectAdvisor.AssignmentDate);
             cmd.ExecuteNonQuery();
         }
+
+        internal static bool isAdvisorExists(ProjectAdvisor projectAdvisor)
+        {
+            SqlConnection con = Configuration.getInstance().getConnection();
+            SqlCommand cmd;
+            cmd = new SqlCommand("Select Count(advisorId) from ProjectAdvisor where AdvisorRole=@aRole and projectId=@projectId", con);
+            cmd.Parameters.AddWithValue("@projectId", projectAdvisor.ProjectId);
+            cmd.Parameters.AddWithValue("@aRole", projectAdvisor.AdvisorRole);
+            int count = (int)cmd.ExecuteScalar();
+            return count > 0;
+        }
     }
 }

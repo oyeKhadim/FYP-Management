@@ -165,14 +165,10 @@ namespace ProjectA.Forms
 
         private void buttonReports_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void buttonReports_Click_1(object sender, EventArgs e)
-        {
-            var physicalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            openCildForm(new Forms.Reports(), sender);
+            //var physicalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             //var physicalPath = "D:\\PDF\\";
-            PdfReport.printPdfReport(physicalPath);
+            //PdfReport.printPdfReport(physicalPath);
         }
     }
 }

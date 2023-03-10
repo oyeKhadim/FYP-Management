@@ -44,7 +44,7 @@ namespace ProjectA.BL
         {
             SqlConnection con= Configuration.getInstance().getConnection();
             int status = LookupClass.findId("active", "status");
-            SqlCommand cmd = new SqlCommand("select FirstName,LastName,RegistrationNo from GroupStudent Join Student s on s.Id=StudentId join person P on s.Id=p.id  where groupid =@groupId and status=@status", con);
+            SqlCommand cmd = new SqlCommand("select FirstName+' '+LastName Name,RegistrationNo,pr.Title [Assigned Project] from GroupStudent gs\r\nleft join GroupProject gp on gp.GroupId=gs.GroupId\r\nleft join Project pr\r\non pr.Id=gp.ProjectId\r\nJoin Student s on s.Id=StudentId join person P on s.Id=p.id \r\n where gs.groupid =@groupId and status=@status", con);
             cmd.Parameters.AddWithValue("@groupId", groupId);
             cmd.Parameters.AddWithValue("@status", status);
             SqlDataAdapter da = new SqlDataAdapter(cmd);

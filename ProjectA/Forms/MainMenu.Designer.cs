@@ -148,7 +148,7 @@
             this.buttonReports.TabIndex = 8;
             this.buttonReports.Text = "Reports";
             this.buttonReports.UseVisualStyleBackColor = false;
-            this.buttonReports.Click += new System.EventHandler(this.buttonReports_Click_1);
+            this.buttonReports.Click += new System.EventHandler(this.buttonReports_Click);
             // 
             // buttonAssignAdvisor
             // 

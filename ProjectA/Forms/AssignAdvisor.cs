@@ -86,6 +86,7 @@ namespace ProjectA.Forms
 
         private void AssignAdvisor_Load(object sender, EventArgs e)
         {
+            ThemeColor.loadTheme(this.tableLayoutPanel);
             loadData();
 
             comboBoxAdvisorRole.SelectedIndex = 0;
@@ -122,8 +123,8 @@ namespace ProjectA.Forms
             }
             try
             {
-                advisorRoles = LookupClass.getValuesOfCategory("ADVISOR_ROLE"); 
-                comboBoxAdvisorRole.DataSource=advisorRoles;
+                advisorRoles = LookupClass.getValuesOfCategory("ADVISOR_ROLE");
+                comboBoxAdvisorRole.DataSource = advisorRoles;
             }
             catch (Exception ex)
             {
@@ -187,9 +188,9 @@ namespace ProjectA.Forms
             if (textBoxSearchProject.Text != searchByName)
             {
 
-            DataTable dt = Project.searchWithTitle(textBoxSearchProject.Text);
-            fillDGV(dt);
-            projectAdvisor.ProjectId = getProjectId();
+                DataTable dt = Project.searchWithTitle(textBoxSearchProject.Text);
+                fillDGV(dt);
+                projectAdvisor.ProjectId = getProjectId();
             }
         }
 
@@ -219,7 +220,11 @@ namespace ProjectA.Forms
                 //Getting role in int from lookup table
                 projectAdvisor.AdvisorRole = LookupClass.findId(aRole, "advisor_role");
                 projectAdvisor.AssignmentDate = DateTime.Now;
-
+                //check advisor already exists or not
+                if (ProjectAdvisor.isAdvisorExists(projectAdvisor))
+                {
+                    throw new Exception(aRole + " already exsists for this project");
+                }
                 //Inserting data in  table
                 try
                 {
