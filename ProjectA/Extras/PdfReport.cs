@@ -44,6 +44,7 @@ namespace ProjectA.Extras
                 {
                     Directory.CreateDirectory(folderPath);
                 }
+                //make a table whose columns are equal to the datagridview columns
                 PdfPTable table = new PdfPTable(dgv.Columns.Count);
                 table.DefaultCell.Padding = 5;
 
@@ -63,7 +64,8 @@ namespace ProjectA.Extras
                 //File Name
                 int fileCount = Directory.GetFiles(folderPath).Length;
                 string strFileName = "DescriptionForm" + (fileCount + 1) + ".pdf";
-                using (FileStream stream = new FileStream(folderPath + "\\" + strFileName, FileMode.Create))
+                string fullPath = folderPath + "\\" + strFileName;
+                using (FileStream stream = new FileStream(fullPath, FileMode.Create))
                 {
                     Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                     PdfWriter.GetInstance(pdfDoc, stream);
@@ -77,7 +79,7 @@ namespace ProjectA.Extras
                 #region Display PDF
                 System.Diagnostics.Process.Start(folderPath + "\\" + strFileName);
                 #endregion
-                MessageBox.Show("Saved");
+                MessageBox.Show("PDF Report Saved to "+fullPath);
 
             }
             catch (Exception ex)

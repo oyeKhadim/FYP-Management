@@ -135,7 +135,12 @@
             this.comboBoxReport.FormattingEnabled = true;
             this.comboBoxReport.Items.AddRange(new object[] {
             "Details of Projects With Advisory Board",
-            "Marks Of Studnets"});
+            "Details of Projects With Advisory Board And List of Students",
+            "Students And Their Assigned Projects",
+            "Marks Of Studnets",
+            "Students Without Group Assigned",
+            "Students Without Project Assigned",
+            "Students Whose Marks are Below Average"});
             this.comboBoxReport.Location = new System.Drawing.Point(182, 11);
             this.comboBoxReport.Name = "comboBoxReport";
             this.comboBoxReport.Size = new System.Drawing.Size(581, 28);

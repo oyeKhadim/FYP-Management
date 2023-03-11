@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -67,14 +68,49 @@ namespace ProjectA.Forms
 
         private void comboBoxReport_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxReport.SelectedIndex == 0)
+            int index = 0;
+            if (comboBoxReport.SelectedIndex == index++)
             {
-                dgv.DataSource = Report.detailsOfProjects();
+               DataTable dt = Report.detailsOfProjects();
+                bindData(dt);
             }
-            else if(comboBoxReport.SelectedIndex == 1)
+            else if (comboBoxReport.SelectedIndex == index++)
             {
-                dgv.DataSource = Report.markSheet();
+                DataTable dt = Report.detailsOfProjectsWithStudents();
+                bindData(dt);
             }
+            else if (comboBoxReport.SelectedIndex == index++)
+            {
+                DataTable dt = Report.studentsAndAssignedProjects();
+                bindData(dt);
+            }
+            else if(comboBoxReport.SelectedIndex == index++)
+            {
+                DataTable dt = Report.markSheet();
+                bindData(dt);
+            }
+            else if (comboBoxReport.SelectedIndex == index++)
+            {
+                DataTable dt = Report.studentsWithoutGroup();
+                bindData(dt);
+            }
+            else if (comboBoxReport.SelectedIndex == index++)
+            {
+                DataTable dt = Report.studentsWithoutProject();
+                bindData(dt);
+            }
+            else if (comboBoxReport.SelectedIndex == index++)
+            {
+                DataTable dt = Report.studentsBelowAverageMarks();
+                bindData(dt);
+            }
+        }
+
+        private void bindData(DataTable dt)
+        {
+            dgv.DataSource = null;
+            dgv.DataSource = dt;
+            dgv.Refresh();
         }
     }
 }
