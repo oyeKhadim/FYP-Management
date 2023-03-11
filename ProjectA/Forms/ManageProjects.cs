@@ -53,8 +53,8 @@ namespace ProjectA.Forms
                 Project project = new Project();
                 int col = 0;
                 project.Id = int.Parse(dgv.SelectedRows[0].Cells[col++].Value.ToString());
-                project.Description = dgv.SelectedRows[0].Cells[col++].Value.ToString();
                 project.Title = dgv.SelectedRows[0].Cells[col++].Value.ToString();
+                project.Description = dgv.SelectedRows[0].Cells[col++].Value.ToString();
                 Form form = new EditProject(project);
                 form.ShowDialog();
                 loadData();
@@ -85,5 +85,22 @@ namespace ProjectA.Forms
             txtBoxSearch.Text = "";
             loadData();
         }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lblHeading_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+    
     }
 }

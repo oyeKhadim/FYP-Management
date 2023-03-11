@@ -74,7 +74,7 @@ namespace ProjectA.Forms
                 }
             }
         }
-        private void openCildForm(Form childForm, object btnSender)
+        public void openCildForm(Form childForm, object btnSender)
         {
             if (activeForm != null)
             {
@@ -166,9 +166,7 @@ namespace ProjectA.Forms
         private void buttonReports_Click(object sender, EventArgs e)
         {
             openCildForm(new Forms.Reports(), sender);
-            //var physicalPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            //var physicalPath = "D:\\PDF\\";
-            //PdfReport.printPdfReport(physicalPath);
+    
         }
     }
 }

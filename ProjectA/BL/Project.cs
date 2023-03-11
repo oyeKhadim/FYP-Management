@@ -32,7 +32,8 @@ namespace ProjectA.BL
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select * from Project where title LIKE '%'+@search+'%'", con);
+                //SqlCommand cmd = new SqlCommand("Select * from Project where title LIKE '%'+@search+'%'", con);
+                SqlCommand cmd = new SqlCommand("select p.id,p.Title,p.Description,\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Main Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Main Advisor],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Co-Advisror' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Co-Advisror],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Industry Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Industry Advisor]\r\nfrom Project p  where title LIKE '%'+@search+'%'", con);
                 cmd.Parameters.AddWithValue("@search", search);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -51,7 +52,8 @@ namespace ProjectA.BL
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select * from Project", con);
+                //SqlCommand cmd = new SqlCommand("Select * from Project", con);
+                SqlCommand cmd = new SqlCommand("select p.id,p.Title,p.Description,\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Main Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Main Advisor],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Co-Advisror' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Co-Advisror],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Industry Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Industry Advisor]\r\nfrom Project p", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);

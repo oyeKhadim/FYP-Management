@@ -57,7 +57,7 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.70351F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.90117F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.96359F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel.Controls.Add(this.dgv, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.lblHeading, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.btnAdd, 12, 4);
@@ -90,6 +90,7 @@
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(786, 431);
             this.tableLayoutPanel.TabIndex = 1;
+            this.tableLayoutPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel_Paint);
             // 
             // dgv
             // 
@@ -97,34 +98,36 @@
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel.SetColumnSpan(this.dgv, 10);
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgv.Location = new System.Drawing.Point(28, 108);
+            this.dgv.Location = new System.Drawing.Point(27, 108);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.tableLayoutPanel.SetRowSpan(this.dgv, 8);
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(605, 301);
+            this.dgv.Size = new System.Drawing.Size(594, 301);
             this.dgv.TabIndex = 6;
+            this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
             // lblHeading
             // 
             this.lblHeading.AutoSize = true;
             this.lblHeading.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeading.Location = new System.Drawing.Point(28, 70);
+            this.lblHeading.Location = new System.Drawing.Point(27, 70);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(84, 35);
+            this.lblHeading.Size = new System.Drawing.Size(83, 35);
             this.lblHeading.TabIndex = 4;
             this.lblHeading.Text = "Projects :";
             this.lblHeading.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHeading.Click += new System.EventHandler(this.lblHeading_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(668, 143);
+            this.btnAdd.Location = new System.Drawing.Point(656, 143);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(85, 29);
+            this.btnAdd.Size = new System.Drawing.Size(83, 29);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -134,9 +137,9 @@
             // 
             this.btnEdit.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(668, 178);
+            this.btnEdit.Location = new System.Drawing.Point(656, 178);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(85, 29);
+            this.btnEdit.Size = new System.Drawing.Size(83, 29);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -146,9 +149,9 @@
             // 
             this.btnReload.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnReload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReload.Location = new System.Drawing.Point(668, 213);
+            this.btnReload.Location = new System.Drawing.Point(656, 213);
             this.btnReload.Name = "btnReload";
-            this.btnReload.Size = new System.Drawing.Size(85, 29);
+            this.btnReload.Size = new System.Drawing.Size(83, 29);
             this.btnReload.TabIndex = 4;
             this.btnReload.Text = "Reload";
             this.btnReload.UseVisualStyleBackColor = true;
@@ -160,9 +163,9 @@
             this.txtBoxSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtBoxSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtBoxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxSearch.Location = new System.Drawing.Point(292, 38);
+            this.txtBoxSearch.Location = new System.Drawing.Point(287, 38);
             this.txtBoxSearch.Name = "txtBoxSearch";
-            this.txtBoxSearch.Size = new System.Drawing.Size(240, 29);
+            this.txtBoxSearch.Size = new System.Drawing.Size(235, 29);
             this.txtBoxSearch.TabIndex = 0;
             this.txtBoxSearch.TextChanged += new System.EventHandler(this.txtBoxSearch_TextChanged);
             // 
@@ -170,7 +173,7 @@
             // 
             this.btnSearch.AutoSize = true;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(550, 38);
+            this.btnSearch.Location = new System.Drawing.Point(540, 38);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 29);
             this.btnSearch.TabIndex = 1;

@@ -134,8 +134,8 @@
             this.comboBoxReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxReport.FormattingEnabled = true;
             this.comboBoxReport.Items.AddRange(new object[] {
-            "1.Details of Projects With Advisory Board",
-            "2.Mark Sheet"});
+            "Details of Projects With Advisory Board",
+            "Marks Of Studnets"});
             this.comboBoxReport.Location = new System.Drawing.Point(182, 11);
             this.comboBoxReport.Name = "comboBoxReport";
             this.comboBoxReport.Size = new System.Drawing.Size(581, 28);

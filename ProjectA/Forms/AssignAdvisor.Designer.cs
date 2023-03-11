@@ -57,20 +57,20 @@
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.142857F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.142857F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.142857F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.142857F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.435115F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.16285F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.396947F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.778625F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 7.142857F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.48855F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.23155F));
             this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.689567F));
             this.tableLayoutPanel.Controls.Add(this.labelChooseRole, 1, 9);
-            this.tableLayoutPanel.Controls.Add(this.textBoxSearchProject, 9, 1);
-            this.tableLayoutPanel.Controls.Add(this.labelChooseProject, 9, 0);
+            this.tableLayoutPanel.Controls.Add(this.textBoxSearchProject, 8, 1);
+            this.tableLayoutPanel.Controls.Add(this.labelChooseProject, 8, 0);
             this.tableLayoutPanel.Controls.Add(this.dgvAdvisors, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.lblChooseAdvisor, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.txtBoxSearchAdvisor, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.dgvProjects, 9, 2);
+            this.tableLayoutPanel.Controls.Add(this.dgvProjects, 8, 2);
             this.tableLayoutPanel.Controls.Add(this.comboBoxAdvisorRole, 1, 10);
             this.tableLayoutPanel.Controls.Add(this.btnAssign, 12, 10);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -112,10 +112,10 @@
             this.textBoxSearchProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxSearchProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxSearchProject.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.textBoxSearchProject.Location = new System.Drawing.Point(478, 38);
+            this.textBoxSearchProject.Location = new System.Drawing.Point(412, 38);
             this.textBoxSearchProject.Name = "textBoxSearchProject";
             this.textBoxSearchProject.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBoxSearchProject.Size = new System.Drawing.Size(274, 29);
+            this.textBoxSearchProject.Size = new System.Drawing.Size(236, 29);
             this.textBoxSearchProject.TabIndex = 7;
             this.textBoxSearchProject.Text = "Search By Name...";
             this.textBoxSearchProject.Click += new System.EventHandler(this.textBoxSearchProject_Click);
@@ -125,12 +125,12 @@
             // labelChooseProject
             // 
             this.labelChooseProject.AutoSize = true;
-            this.tableLayoutPanel.SetColumnSpan(this.labelChooseProject, 3);
+            this.tableLayoutPanel.SetColumnSpan(this.labelChooseProject, 5);
             this.labelChooseProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelChooseProject.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelChooseProject.Location = new System.Drawing.Point(478, 0);
+            this.labelChooseProject.Location = new System.Drawing.Point(412, 0);
             this.labelChooseProject.Name = "labelChooseProject";
-            this.labelChooseProject.Size = new System.Drawing.Size(170, 35);
+            this.labelChooseProject.Size = new System.Drawing.Size(340, 35);
             this.labelChooseProject.TabIndex = 6;
             this.labelChooseProject.Text = "Choose  Project :";
             this.labelChooseProject.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,7 +138,7 @@
             // dgvAdvisors
             // 
             this.dgvAdvisors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel.SetColumnSpan(this.dgvAdvisors, 7);
+            this.tableLayoutPanel.SetColumnSpan(this.dgvAdvisors, 6);
             this.dgvAdvisors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvAdvisors.Location = new System.Drawing.Point(23, 73);
             this.dgvAdvisors.MultiSelect = false;
@@ -146,7 +146,7 @@
             this.dgvAdvisors.ReadOnly = true;
             this.tableLayoutPanel.SetRowSpan(this.dgvAdvisors, 7);
             this.dgvAdvisors.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAdvisors.Size = new System.Drawing.Size(422, 239);
+            this.dgvAdvisors.Size = new System.Drawing.Size(366, 239);
             this.dgvAdvisors.TabIndex = 5;
             this.dgvAdvisors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdvisors_CellClick);
             // 
@@ -182,16 +182,16 @@
             // 
             // dgvProjects
             // 
-            this.dgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel.SetColumnSpan(this.dgvProjects, 4);
+            this.tableLayoutPanel.SetColumnSpan(this.dgvProjects, 5);
             this.dgvProjects.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProjects.Location = new System.Drawing.Point(478, 73);
+            this.dgvProjects.Location = new System.Drawing.Point(412, 73);
             this.dgvProjects.Name = "dgvProjects";
             this.dgvProjects.ReadOnly = true;
             this.tableLayoutPanel.SetRowSpan(this.dgvProjects, 7);
             this.dgvProjects.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProjects.Size = new System.Drawing.Size(274, 239);
+            this.dgvProjects.Size = new System.Drawing.Size(340, 239);
             this.dgvProjects.TabIndex = 8;
             this.dgvProjects.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProjects_CellClick);
             // 
