@@ -37,8 +37,8 @@ namespace ProjectA.Forms
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName ,RegistrationNo from Student S Join Person P on S.id=P.id   Left Join GroupStudent gs on gs.StudentId=s.Id Left Join Lookup l on l.id=gs.status where gs.GroupId is null or l.value=@status", con);
-                cmd.Parameters.AddWithValue("@status", "inActive");
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName ,RegistrationNo from Student S Join Person P on S.id=P.id Except Select S.ID,FirstName,LastName ,RegistrationNo from Student S Join Person P on S.id=P.id  Join GroupStudent gs on gs.StudentId=s.Id Join Lookup l on l.id=gs.status where l.Value=@status", con);
+                cmd.Parameters.AddWithValue("@status", "active");
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -106,25 +106,32 @@ namespace ProjectA.Forms
         }
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
-            int selectedIndex = dgvAllStudents.SelectedRows[0].Index;
-            if (selectedIndex >= 0)
+            try
             {
-                int col = 0;
-                DataTable dt = (dgvChoosedStudents.DataSource) as DataTable;
-                DataRow newRow = dt.NewRow();
-                int studentid = int.Parse(dgvAllStudents.SelectedRows[0].Cells[col++].Value.ToString());
-                newRow["ID"] = studentid.ToString();
-                if (!studentsTobeAdded.Contains(studentid))
+                int selectedIndex = dgvAllStudents.SelectedRows[0].Index;
+                if (selectedIndex >= 0)
                 {
-                    newRow["FirstName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
-                    newRow["LastName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
-                    newRow["RegistrationNo"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
-                    dt.Rows.Add(newRow);
-                    dgvChoosedStudents.DataSource = dt;
-                    studentsTobeAdded.Add(studentid);
-                    dgvAllStudents.Rows.RemoveAt(selectedIndex);
+                    int col = 0;
+                    DataTable dt = (dgvChoosedStudents.DataSource) as DataTable;
+                    DataRow newRow = dt.NewRow();
+                    int studentid = int.Parse(dgvAllStudents.SelectedRows[0].Cells[col++].Value.ToString());
+                    newRow["ID"] = studentid.ToString();
+                    if (!studentsTobeAdded.Contains(studentid))
+                    {
+                        newRow["FirstName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
+                        newRow["LastName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
+                        newRow["RegistrationNo"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
+                        dt.Rows.Add(newRow);
+                        dgvChoosedStudents.DataSource = dt;
+                        studentsTobeAdded.Add(studentid);
+                        dgvAllStudents.Rows.RemoveAt(selectedIndex);
 
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("First Choose a Student to Add");
             }
 
         }
@@ -137,24 +144,28 @@ namespace ProjectA.Forms
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int col = 0;
+                DataTable dt = (dgvAllStudents.DataSource) as DataTable;
+                DataRow newRow = dt.NewRow();
+                int studentid = int.Parse(dgvChoosedStudents.SelectedRows[0].Cells[col++].Value.ToString());
+                newRow["ID"] = studentid.ToString();
+                newRow["FirstName"] = dgvChoosedStudents.SelectedRows[0].Cells[col++].Value;
+                newRow["LastName"] = dgvChoosedStudents.SelectedRows[0].Cells[col++].Value;
+                newRow["RegistrationNo"] = dgvChoosedStudents.SelectedRows[0].Cells[col++].Value;
+                dt.Rows.Add(newRow);
+                dgvAllStudents.DataSource = dt;
+                studentsTobeAdded.Remove(studentid);
+                int selectedIndex = dgvChoosedStudents.SelectedRows[0].Index;
 
-            int col = 0;
-            DataTable dt = (dgvAllStudents.DataSource) as DataTable;
-            DataRow newRow = dt.NewRow();
-            int studentid = int.Parse(dgvChoosedStudents.SelectedRows[0].Cells[col++].Value.ToString());
-            newRow["ID"] = studentid.ToString();
-            newRow["FirstName"] = dgvChoosedStudents.SelectedRows[0].Cells[col++].Value;
-            newRow["LastName"] = dgvChoosedStudents.SelectedRows[0].Cells[col++].Value;
-            newRow["RegistrationNo"] = dgvChoosedStudents.SelectedRows[0].Cells[col++].Value;
-            dt.Rows.Add(newRow);
-            dgvAllStudents.DataSource = dt;
-            studentsTobeAdded.Remove(studentid);
-            int selectedIndex = dgvChoosedStudents.SelectedRows[0].Index;
+                dgvChoosedStudents.Rows.RemoveAt(selectedIndex);
 
-            dgvChoosedStudents.Rows.RemoveAt(selectedIndex);
-
-
-
+            }
+            catch
+            {
+                MessageBox.Show("First Choose a Student to Remove");
+            }
         }
     }
 }

@@ -49,8 +49,8 @@ namespace ProjectA.Forms
             try
             {
                 var con = Configuration.getInstance().getConnection();
-                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName ,RegistrationNo from Student S Join Person P on S.id=P.id   Left Join GroupStudent gs on gs.StudentId=s.Id Left Join Lookup l on l.id=gs.status where gs.GroupId is null or l.value=@status", con);
-                cmd.Parameters.AddWithValue("@status", "inActive");
+                SqlCommand cmd = new SqlCommand("Select S.ID,FirstName,LastName ,RegistrationNo from Student S Join Person P on S.id=P.id Except Select S.ID,FirstName,LastName ,RegistrationNo from Student S Join Person P on S.id=P.id  Join GroupStudent gs on gs.StudentId=s.Id Join Lookup l on l.id=gs.status where l.Value=@status", con);
+                cmd.Parameters.AddWithValue("@status", "active");
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -98,20 +98,20 @@ namespace ProjectA.Forms
                 DataTable dt = (dgvChoosedStudents.DataSource) as DataTable;
                 DataRow newRow = dt.NewRow();
                 int studentid = int.Parse(dgvAllStudents.SelectedRows[0].Cells[col++].Value.ToString());
-                if (!studentsAlreadyAdded.Contains(studentid))
-                {
-                    newRow["ID"] = studentid.ToString();
-                    newRow["FirstName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
-                    newRow["LastName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
-                    newRow["RegistrationNo"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
-                    dt.Rows.Add(newRow);
-                    dgvChoosedStudents.DataSource = dt;
-                    studentsTobeAdded.Add(studentid);
-                    studentsTobeRemoved.Remove(studentid);
+                //if (!studentsAlreadyAdded.Contains(studentid))
+                //{
+                newRow["ID"] = studentid.ToString();
+                newRow["FirstName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
+                newRow["LastName"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
+                newRow["RegistrationNo"] = dgvAllStudents.SelectedRows[0].Cells[col++].Value;
+                dt.Rows.Add(newRow);
+                dgvChoosedStudents.DataSource = dt;
+                studentsTobeAdded.Add(studentid);
+                studentsTobeRemoved.Remove(studentid);
 
-                    dgvAllStudents.Rows.RemoveAt(selectedIndex);
+                dgvAllStudents.Rows.RemoveAt(selectedIndex);
 
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace ProjectA.Forms
                 dgvAllStudents.DataSource = dt;
                 int selectedIndex = dgvChoosedStudents.SelectedRows[0].Index;
                 dgvChoosedStudents.Rows.RemoveAt(selectedIndex);
-                studentsAlreadyAdded.Remove(studentid);
+                //studentsAlreadyAdded.Remove(studentid);
                 studentsTobeAdded.Remove(studentid);
                 studentsTobeRemoved.Add(studentid);
             }
@@ -151,6 +151,12 @@ namespace ProjectA.Forms
 
             try
             {
+                //remove all those students from tobeAddedlist who was already in this group
+                foreach (int sid in studentsAlreadyAdded)
+                {
+                    studentsTobeAdded.Remove(sid);
+                }
+
                 SqlCommand cmd;
                 SqlConnection con = Configuration.getInstance().getConnection();
                 //Getting status in int from lookup table
@@ -166,8 +172,13 @@ namespace ProjectA.Forms
                 while (DR.Read())
                 {
                     //storing them in seperate list as just their status will be updated
-                    studentsTobeAdded.Remove(int.Parse(DR[0].ToString()));
-                    studentsAlreadyAdded.Add(int.Parse(DR[0].ToString()));
+                    int sid = int.Parse(DR[0].ToString());
+                    if (studentsTobeAdded.Contains(sid))
+                    {
+
+                        studentsAlreadyAdded.Add(sid);
+                        studentsTobeAdded.Remove(sid);
+                    }
 
                 }
                 foreach (int sId in studentsTobeAdded)

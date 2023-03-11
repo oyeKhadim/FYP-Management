@@ -182,7 +182,6 @@
             // 
             // dgvProjects
             // 
-            this.dgvProjects.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvProjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel.SetColumnSpan(this.dgvProjects, 5);
             this.dgvProjects.Dock = System.Windows.Forms.DockStyle.Fill;
