@@ -50,7 +50,7 @@ namespace ProjectA.Extras
         {
             SqlCommand cmd;
             SqlConnection con = Configuration.getInstance().getConnection();
-            string query = "select FirstName+' '+LastName Name,RegistrationNo,p.Title [Assigned Project] \r\nfrom Student s\r\nLeft join GroupStudent gs\r\non s.Id =gs.StudentId\r\nleft join GroupProject gp\r\non gp.GroupId=gs.GroupId\r\nleft join Project p\r\non p.Id=gp.ProjectId\r\njoin person pr\r\non s.Id=pr.Id";
+            string query = "select Distinct FirstName+' '+LastName Name,RegistrationNo,p.Title [Assigned Project] \r\nfrom Student s\r\nLeft join GroupStudent gs\r\non s.Id =gs.StudentId\r\nleft join GroupProject gp\r\non gp.GroupId=gs.GroupId\r\nleft join Project p\r\non p.Id=gp.ProjectId\r\njoin person pr\r\non s.Id=pr.Id";
             cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -74,7 +74,7 @@ namespace ProjectA.Extras
         {
             SqlCommand cmd;
             SqlConnection con = Configuration.getInstance().getConnection();
-            string query = "select p.FirstName+' '+p.LastName Name,s.RegistrationNo\r\nfrom Student s\r\njoin person p\r\non s.Id=p.Id\r\nLeft join GroupStudent gs\r\non s.Id=gs.StudentId\r\nwhere gs.GroupId is null";
+            string query = "Select S.ID,FirstName,LastName ,RegistrationNo \r\nfrom Student S Join Person P on S.id=P.id \r\nExcept \r\nSelect S.ID,FirstName,LastName ,RegistrationNo \r\nfrom Student S Join Person P on S.id=P.id  \r\nJoin GroupStudent gs on gs.StudentId=s.Id \r\nJoin Lookup l on l.id=gs.status \r\nwhere l.Value='active'";
             cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
