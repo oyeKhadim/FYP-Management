@@ -68,19 +68,7 @@ namespace ProjectA.Forms
                     //evaluation.TotalMarks = int.Parse(textBoxTotalMarks.Text);
                     //evaluation.TotalWeightage = int.Parse(textBoxWeightage.Text);
 
-                    SqlCommand cmd;
-
-
-                    //Adding data in project table
-                    cmd = new SqlCommand("Update Evaluation SET  name=@name Where id=@id", con);
-                    //cmd = new SqlCommand("Update Evaluation SET  name=@name,totalmarks=@marks,TotalWeightage=@weightage Where id=@id", con);
-                    cmd.Parameters.AddWithValue("@id", evaluation.Id);
-                    cmd.Parameters.AddWithValue("@name", evaluation.Name);
-                    //cmd.Parameters.AddWithValue("@marks", evaluation.TotalMarks);
-                    //cmd.Parameters.AddWithValue("@weightage", evaluation.TotalWeightage);
-                    //inserting null values in database if user has not provided full informations
-
-                    cmd.ExecuteNonQuery();
+                    Evaluation.updateEvaluation(evaluation);
                     MessageBox.Show("Updated");
                     this.Close();
                 }

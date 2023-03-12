@@ -83,7 +83,7 @@ namespace ProjectA.BL
         {
             var con = Configuration.getInstance().getConnection();
             SqlCommand cmd;
-            cmd = new SqlCommand("Update  Advisor SET  designation=@designation,salary=@salary where id=@id", con);
+            cmd = new SqlCommand("Update Advisor SET  designation=@designation,salary=@salary where id=@id", con);
             cmd.Parameters.AddWithValue("@id", a.Id);
             if (a.Salary == -1)
             {

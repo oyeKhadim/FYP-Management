@@ -54,23 +54,8 @@ namespace ProjectA.Forms
                 //if all fields all fill correctly store in database
                 if (isAllInfoValid)
                 {
-                    SqlCommand cmd;
-
-
                     //updating data in project table
-                    cmd = new SqlCommand("Update Project SET description=@description,title=@title where id=@id", con);
-                    cmd.Parameters.AddWithValue("@id", project.Id);
-                    cmd.Parameters.AddWithValue("@title", project.Title);
-                    //inserting null values in database if user has not provided full informations
-                    if (project.Description == "")
-                    {
-                        cmd.Parameters.AddWithValue("@description", DBNull.Value);
-                    }
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@description", project.Description);
-                    }
-                    cmd.ExecuteNonQuery();
+                    Project.updateProject(project);
                     MessageBox.Show("updated");
                     this.Close();
                 }

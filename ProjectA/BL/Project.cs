@@ -33,7 +33,7 @@ namespace ProjectA.BL
             {
                 var con = Configuration.getInstance().getConnection();
                 //SqlCommand cmd = new SqlCommand("Select * from Project where title LIKE '%'+@search+'%'", con);
-                SqlCommand cmd = new SqlCommand("select p.id,p.Title,p.Description,\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Main Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Main Advisor],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Co-Advisror' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Co-Advisror],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Industry Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Industry Advisor]\r\nfrom Project p  where title LIKE '%'+@search+'%'", con);
+                SqlCommand cmd = new SqlCommand("select p.id,p.Title,p.Description,  (  select pe.FirstName+' '+pe.LastName  from ProjectAdvisor pa  join Person pe  on pe.Id=pa.AdvisorId  join Lookup l  on l.Id=pa.AdvisorRole  where l.Value='Main Advisor'   and p.Id=pa.ProjectId  )[Main Advisor],  (  select pe.FirstName+' '+pe.LastName  from ProjectAdvisor pa  join Person pe  on pe.Id=pa.AdvisorId  join Lookup l  on l.Id=pa.AdvisorRole  where l.Value='Co-Advisror'   and p.Id=pa.ProjectId  )[Co-Advisror],  (  select pe.FirstName+' '+pe.LastName  from ProjectAdvisor pa  join Person pe  on pe.Id=pa.AdvisorId  join Lookup l  on l.Id=pa.AdvisorRole  where l.Value='Industry Advisor'   and p.Id=pa.ProjectId  )[Industry Advisor]  from Project p  where title LIKE '%'+@search+'%'", con);
                 cmd.Parameters.AddWithValue("@search", search);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -47,13 +47,51 @@ namespace ProjectA.BL
             return null;
         }
 
+        internal static void addProject(Project project)
+        {
+            SqlCommand cmd;
+            SqlConnection con = Configuration.getInstance().getConnection();
+
+            cmd = new SqlCommand("Insert into project values ( @description,@title)", con);
+            cmd.Parameters.AddWithValue("@title", project.Title);
+            //inserting null values in database if user has not provided full informations
+            if (project.Description == "")
+            {
+                cmd.Parameters.AddWithValue("@description", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@description", project.Description);
+            }
+            cmd.ExecuteNonQuery();
+        }
+        internal static void updateProject(Project project)
+        {
+            SqlCommand cmd;
+            SqlConnection con = Configuration.getInstance().getConnection();
+
+
+            cmd = new SqlCommand("Update Project SET description=@description,title=@title where id=@id", con);
+            cmd.Parameters.AddWithValue("@id", project.Id);
+            cmd.Parameters.AddWithValue("@title", project.Title);
+            //inserting null values in database if user has not provided full informations
+            if (project.Description == "")
+            {
+                cmd.Parameters.AddWithValue("@description", DBNull.Value);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@description", project.Description);
+            }
+            cmd.ExecuteNonQuery();
+        }
         internal static DataTable loadProjects()
         {
             try
             {
                 var con = Configuration.getInstance().getConnection();
                 //SqlCommand cmd = new SqlCommand("Select * from Project", con);
-                SqlCommand cmd = new SqlCommand("select p.id,p.Title,p.Description,\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Main Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Main Advisor],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Co-Advisror' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Co-Advisror],\r\n\t\t(\r\n\t\tselect pe.FirstName+' '+pe.LastName\r\n\t\tfrom ProjectAdvisor pa\r\n\t\tjoin Person pe\r\n\t\ton pe.Id=pa.AdvisorId\r\n\t\tjoin Lookup l\r\n\t\ton l.Id=pa.AdvisorRole\r\n\t\twhere l.Value='Industry Advisor' \r\n\t\tand p.Id=pa.ProjectId\r\n\t\t)[Industry Advisor]\r\nfrom Project p", con);
+                SqlCommand cmd = new SqlCommand("select p.id,p.Title,p.Description,  (  select pe.FirstName+' '+pe.LastName  from ProjectAdvisor pa  join Person pe  on pe.Id=pa.AdvisorId  join Lookup l  on l.Id=pa.AdvisorRole  where l.Value='Main Advisor'   and p.Id=pa.ProjectId  )[Main Advisor],  (  select pe.FirstName+' '+pe.LastName  from ProjectAdvisor pa  join Person pe  on pe.Id=pa.AdvisorId  join Lookup l  on l.Id=pa.AdvisorRole  where l.Value='Co-Advisror'   and p.Id=pa.ProjectId  )[Co-Advisror],  (  select pe.FirstName+' '+pe.LastName  from ProjectAdvisor pa  join Person pe  on pe.Id=pa.AdvisorId  join Lookup l  on l.Id=pa.AdvisorRole  where l.Value='Industry Advisor'   and p.Id=pa.ProjectId  )[Industry Advisor]  from Project p", con);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
